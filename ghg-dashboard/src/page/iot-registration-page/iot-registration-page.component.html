@@ -1,3 +1,39 @@
 <div class="irp">
-    <h1>This is IoT registration page</h1>
+    <h1 class="irp-header">Register IoT Sensor</h1>
+    <form class="irp-form" action="">
+        <div class="irp-form-item">
+            <label for="">Device Name</label>
+            <input class="irp-form-input short--" type="text">
+        </div>
+        <div class="irp-form-item">
+            <label for="">Device Model</label>
+            <input class="irp-form-input"type="text">
+        </div>
+        <div class="irp-form-item">
+            <label for="">Description of functionality</label>
+            <input class="irp-form-input" type="text">
+        </div>
+        <p class="irp-form-p">Location Information</p>
+        <div class="irp-form-item select--">
+            <div class="irp-f-i-div">
+                <label for="">Building</label>
+                <select name="" id=""></select>
+            </div>
+            <div class="irp-f-i-div">
+                <label for="">Room</label>
+                <select name="" id=""></select>
+            </div>
+        </div>
+        <div class="irp-form-item">
+            <label for="">Location Description</label>
+            <input class="irp-form-input"type="text">
+        </div>
+        <div class="irp-form-item">
+            <label for="">Image of Device (Optional) </label>
+            <label class="irp-form-input file--" for=""> Upload Image
+                <input style="display: none" class="irp-form-input" type="file">
+            </label>
+        </div>
+    </form>
+    <button>Register</button>
 </div>
