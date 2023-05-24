@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./iot-registration-page.component.scss']
 })
 export class IotRegistrationPageComponent {
-
+  iotSubmit(item: any){
+    console.log(item);
+  }
 }
