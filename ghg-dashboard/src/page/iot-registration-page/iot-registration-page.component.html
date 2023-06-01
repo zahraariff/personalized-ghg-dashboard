@@ -1,3 +1,45 @@
 <div class="irp">
-    <h1>This is IoT registration page</h1>
+    <h1 class="irp-header">Register IoT Sensor</h1>
+    <form class="irp-form" #iotRegForm="ngForm" (ngSubmit)="iotSubmit(iotRegForm.value)">
+        <div class="irp-form-item">
+            <label for="">Device Name</label>
+            <input class="irp-form-input short--" type="text" name="deviceName" ngModel>
+        </div>
+        <div class="irp-form-item"> 
+            <label for="">Device Model</label>
+            <input class="irp-form-input"type="text" ngModel name="deviceModel">
+        </div>
+        <div class="irp-form-item">
+            <label for="">Description of functionality</label>
+            <input class="irp-form-input" type="text" ngModel name="desc">
+        </div>
+        <p class="irp-form-p">Location Information</p>
+        <div class="irp-form-item select--">
+            <div class="irp-f-i-div">
+                <label for="">Building</label>
+                <select name="building" id="" ngModel>
+                    <option value="fsktm"> FSKTM </option>
+                    <option value="ias"> IAS </option>
+                </select>
+            </div>
+            <div class="irp-f-i-div">
+                <label for="">Room</label>
+                <select name="room" id=""ngModel >
+                    <option value="none"> None </option>
+                    <option value="cafe"> Cafe </option>
+                </select>
+            </div>
+        </div>
+        <div class="irp-form-item">
+            <label for="">Location Description</label>
+            <input class="irp-form-input"type="text" ngModel name="locDesc">
+        </div>
+        <div class="irp-form-item">
+            <label for="">Image of Device (Optional) </label>
+            <label class="irp-form-input file--" for="image"> Upload Image
+                <input style="display: none" class="irp-form-input" type="file" ngModel name="deviceImage" id="image"multiple accept="image/*" >
+            </label>
+        </div> 
+        <button>Register</button>
+    </form>
 </div>
