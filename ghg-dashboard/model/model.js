@@ -30,5 +30,5 @@ const iotSensor = new mongoose.Schema({
     }
 })
 
-const iotSensorDataModel = mongoose.model('iotSensor', iotSensor)
+const iotSensorDataModel = mongoose.model('iotSensor', iotSensor);
 module.exports = iotSensorDataModel

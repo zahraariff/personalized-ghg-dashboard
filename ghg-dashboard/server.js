@@ -28,6 +28,13 @@ database.once('connected', () => {
 const app = express();
 app.use(cors())
 
+// User registration and login
+const db = require("./model/role.model");
+const Role = db.role;
+
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
+
 //Adds a middleware function to the Express application's request processing pipeline.
 //Middleware function = Functions that have access to the request and response obj, can perform tasks such as modifying req/res 
 //express.json() automatically parses the request body and makes the JSON data available on the 'req.body' property
@@ -38,6 +45,34 @@ app.listen(3000, () => {
 });
 
 app.use('/api', routes)
+
+// User registration and login
+function initial() {
+    Role.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0){
+            new Role({
+                name: "user"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'user' to roles collection");
+            });
+
+            new Role({
+                name: "admin"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'admin' to roles collection");
+            });
+        }
+    })
+}
+
 
 
 
