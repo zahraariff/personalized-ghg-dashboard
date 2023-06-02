@@ -9,6 +9,7 @@ const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.
 // console.log(process.env.DATABASE_URL);
 const routes = require('./routes/routes');
 const router = express.Router()
+const cors = require('cors');
 
 // Connect the db to this server using Mongoose
 mongoose.connect(mongoString);
@@ -25,6 +26,7 @@ database.once('connected', () => {
 
 //Create new instance of the express server
 const app = express();
+app.use(cors())
 
 //Adds a middleware function to the Express application's request processing pipeline.
 //Middleware function = Functions that have access to the request and response obj, can perform tasks such as modifying req/res 

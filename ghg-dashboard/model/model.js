@@ -1,14 +1,34 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-    name: {
+const iotSensor = new mongoose.Schema({
+    deviceName: {
         required: true,
         type: String
     },
-    age: {
+    deviceModel: {
         required: true,
-        type: Number
+        type: String
+    },
+    desc: {
+        required: true,
+        type: String
+    },
+    building: {
+        required: true,
+        type: String
+    },
+    room: {
+        required: true,
+        type: String
+    },
+    locDesc: {
+        required: true,
+        type: String
+    },
+    deviceImage: {
+        file: Buffer
     }
 })
 
-module.exports = mongoose.model('Data', dataSchema)
+const iotSensorDataModel = mongoose.model('iotSensor', iotSensor)
+module.exports = iotSensorDataModel

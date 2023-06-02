@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
-const Model = require('../model/model');
+const iotSensorDataModel = require('../model/model');
+const mongoose = require('mongoose');
 module.exports = router;
 
 // Post Method
 router.post('/post', async (req,res) => {
-   const data = new Model({
-    name: req.body.name,
-    age: req.body.age
+   const data = new iotSensorDataModel({
+    deviceName: req.body.deviceName,
+    deviceModel: req.body.deviceModel,
+    desc: req.body.desc,
+    building: req.body.building,
+    room: req.body.room,
+    locDesc: req.body.locDesc,
+    deviceImage: req.body.deviceImage
    })
 
    try {
@@ -18,27 +24,27 @@ router.post('/post', async (req,res) => {
    }
 })
 
-// Get all Method
-router.get('/getAll', (req, res) => {
-    res.send('Get All API')
-})
+// // Get all Method
+// router.get('/getAll', (req, res) => {
+//     res.send('Get All API')
+// })
 
-// Get by ID Method
-router.get('/getOne/:id', async (req, res) => {
-    try {
-        const data = await Model.findById(req.params.id);
-        res.json(data)
-    } catch (error) {
-        res.status(500).json({message: error.message})
-    }
-})
+// // Get by ID Method
+// router.get('/getOne/:id', async (req, res) => {
+//     try {
+//         const data = await Model.findById(req.params.id);
+//         res.json(data)
+//     } catch (error) {
+//         res.status(500).json({message: error.message})
+//     }
+// })
 
-// Update by ID Method
-router.patch('/update/:id', (req, res) => {
-    res.send('Update by ID API')
-})
+// // Update by ID Method
+// router.patch('/update/:id', (req, res) => {
+//     res.send('Update by ID API')
+// })
 
-// Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
-})
+// // Delete by ID Method
+// router.delete('/delete/:id', (req, res) => {
+//     res.send('Delete by ID API')
+// })

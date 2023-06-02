@@ -4,7 +4,7 @@ import { IotRegistrationPageComponent } from 'src/page/iot-registration-page/iot
 
 const routes: Routes = [
   {path: 'register-iot-sensor', component: IotRegistrationPageComponent},
-  { path: '',   redirectTo: '/register-iot-sensor', pathMatch: 'full' }
+  {path: '',   redirectTo: '/register-iot-sensor', pathMatch: 'full' }
 ];
 
 @NgModule({
