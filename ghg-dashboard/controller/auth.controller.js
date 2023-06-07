@@ -1,67 +1,44 @@
 const config = require("../config/auth.config");
-const db = require("../model/role.model");
-const db2 = require("../model/user.model");
-const User = db2.user;
+const db = require("../model");
+const User = db.user;
 const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-exports.registration = (req, res) => {
-    const user = new User ({
-        username: req.body.username,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 8)
-    });
+exports.register = (req,res) => {
 
-    user.save((err, user) => {
-        if (err) {
-            res.status(500).send({ message: err });
-            return;
+    User.findOne({
+        $or: [
+            { username: req.body.username },
+            { email: req.body.email }
+        ]
+    }).then((existingUser) => {
+        if (existingUser) {
+            console.log('header 1 sent')
+            console.error('User already exists.')
+            return res.status(400).json({ error: 'User already exists' });
+        } else {
+            const newUser = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8)        
+            });
+            
+            newUser.save()
+                .then(() => {
+                    console.log('header 2 sent')
+                    return res.status(201).json(newUser);
+                })
+                .catch((error) => {
+                    console.log('header 3 sent')
+                    console.error('Failed to save user:', error);
+                });
         }
+    })
 
-    if (req.body.roles) {
-        Role.find(
-            {
-            name: { $in: req.body.roles }
-            },
-            (err, roles) => {
-            if (err) {
-                res.status(500).send({ message: err });
-                return;
-            }
-    
-            user.roles = roles.map(role => role._id);
-            user.save(err => {
-                if (err) {
-                res.status(500).send({ message: err });
-                return;
-                }
-    
-                res.send({ message: "User was registered successfully!" });
-            });
-        }
-    );
-    } else {
-        Role.findOne({ name: "user" }, (err, role) => {
-            if (err) {
-              res.status(500).send({ message: err });
-              return;
-            }
-    
-            user.roles = [role._id];
-            user.save(err => {
-              if (err) {
-                res.status(500).send({ message: err });
-                return;
-              }
-    
-              res.send({ message: "User was registered successfully!" });
-            });
-        });
-    }
-    });
-};
+}
+
 
 // To be uncommented later
 // exports.signin = (req, res) => {
@@ -108,4 +85,4 @@ exports.registration = (req, res) => {
 //           accessToken: token
 //         });
 //       });
-//   };
+//   }

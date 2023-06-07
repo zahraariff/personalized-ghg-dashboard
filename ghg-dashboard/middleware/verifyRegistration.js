@@ -1,22 +1,26 @@
-const db = require("../model/model");
-const ROLES = db.ROLES;
-const User = db.user;
+const db = require("../model/user.model.js");
+const db2 = require("../model/role.model");
+
+const ROLES = db2.ROLES;
+const User = db.User;
 
 checkDuplicateUsernameOrEmail = (req,res,next) => {
     // Username
-    User.findOne({
-        username: req.body.username
-    }).exec((err, user) => {
-        if (err) {
-            res.status(500).send({ message: err });
-            return;
-        }
+        User.findOne({
+            username: req.body.username
+        }).exec((err, user) => {
+            if (err) {
+                res.status(500).send({ message: err });
+                return;
+            }
 
-        if (user) {
-            res.status(400).send({ message: "Username has already been taken."});
-            return;
-        }
-    });
+            if (user) {
+                res.status(400).send({ message: "Username has already been taken."});
+                return;
+            }
+        });
+
+       
 
     // Email
     User.findOne({
@@ -34,7 +38,7 @@ checkDuplicateUsernameOrEmail = (req,res,next) => {
 
         next();
     });
-};
+}
 
 checkRolesExisted = (req, res, next) => {
     if (req.body.roles) {

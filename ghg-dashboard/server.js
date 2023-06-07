@@ -32,13 +32,21 @@ app.use(cors())
 const db = require("./model/role.model");
 const Role = db.role;
 
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+const corsOptions = {
+    origin: '*', // Replace with your allowed origin
+    methods: 'GET, POST, PUT, DELETE',
+    allowedHeaders: 'Content-Type, Authorization'
+  };
+  // Enable CORS with options
+app.use(cors(corsOptions));
 
 //Adds a middleware function to the Express application's request processing pipeline.
 //Middleware function = Functions that have access to the request and response obj, can perform tasks such as modifying req/res 
 //express.json() automatically parses the request body and makes the JSON data available on the 'req.body' property
 app.use(express.json());
+
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
