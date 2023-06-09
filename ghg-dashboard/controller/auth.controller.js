@@ -22,7 +22,8 @@ exports.register = (req,res) => {
             const newUser = new User({
                 username: req.body.username,
                 email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 8)        
+                password: bcrypt.hashSync(req.body.password, 8),
+                role: [ "user" ]        
             });
             
             newUser.save()
@@ -33,10 +34,30 @@ exports.register = (req,res) => {
                 .catch((error) => {
                     console.log('header 3 sent')
                     console.error('Failed to save user:', error);
+                    this.errorMessage = error;
                 });
         }
     })
+}
 
+exports.login = async (req, res) => {
+    const { username, email, password } = req.body;
+
+     // Find the user in the database
+    const user = await User.findOne({ $or: [{ username }, { email }] });
+
+    // Check if the user exists and the password is correct
+    if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    } else {
+        console.log("Logged In");
+    }
+
+    // Generate a JWT
+    const token = jwt.sign({ userId: user._id }, 'secret-key');
+
+    // Return the token to the client
+    res.json({ token });
 }
 
 
