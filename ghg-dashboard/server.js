@@ -10,6 +10,7 @@ const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.
 const routes = require('./routes/routes');
 const router = express.Router()
 const cors = require('cors');
+const cookieSession = require("cookie-session");
 
 // Connect the db to this server using Mongoose
 mongoose.connect(mongoString);
@@ -44,6 +45,15 @@ app.use(cors(corsOptions));
 //Middleware function = Functions that have access to the request and response obj, can perform tasks such as modifying req/res 
 //express.json() automatically parses the request body and makes the JSON data available on the 'req.body' property
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+    cookieSession({
+      name: "ghg-session",
+      secret: "COOKIE_SECRET", // should use as secret environment variable
+      httpOnly: true
+    })
+  );
+
 
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);

@@ -12,11 +12,6 @@ module.exports = function(app) {
 
   app.post(
     "/api/auth/registration",
-    // [
-    //   verifyRegistration.checkDuplicateUsernameOrEmail,
-    //   verifyRegistration.checkRolesExisted
-    // ],
-    // controller.registration
     controller.register
   );
 

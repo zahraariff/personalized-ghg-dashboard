@@ -19,5 +19,11 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.get("/api/auth/login", authJwt.verifyToken, (req, res) => {
+    //Acessible only to authenticated users
+    res.json({ message: 'Success Login Page'});
+    console.log('Success')
+  })
 };
 

@@ -8,22 +8,27 @@ import { FormsModule } from '@angular/forms';
 import { IotRegistrationPageComponent } from 'src/page/iot-registration-page/iot-registration-page.component';
 import { RegisterPageComponent } from 'src/page/register-page/register-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from 'src/page/login-page/login-page.component';
+import { SuccessLoginComponent } from 'src/page/success-login/success-login.component';
 
+import { httpInterceptorProviders } from 'src/helpers/http.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     IotRegistrationPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    LoginPageComponent,
+    SuccessLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
