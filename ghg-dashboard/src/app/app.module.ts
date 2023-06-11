@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from 'src/page/login-page/login-page.component';
 import { SuccessLoginComponent } from 'src/page/success-login/success-login.component';
 
-import { httpInterceptorProviders } from 'src/helpers/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { httpInterceptorProviders } from 'src/helpers/http.interceptor';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

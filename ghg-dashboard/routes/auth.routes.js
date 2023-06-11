@@ -20,6 +20,4 @@ module.exports = function(app) {
     controller.login
   );
 
-// For sign in later
-//   app.post("/api/auth/signin", controller.signin);
 };
