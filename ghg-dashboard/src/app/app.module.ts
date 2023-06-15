@@ -10,7 +10,9 @@ import { RegisterPageComponent } from 'src/page/register-page/register-page.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from 'src/page/login-page/login-page.component';
 import { SuccessLoginComponent } from 'src/page/success-login/success-login.component';
-
+import { LandingPageComponent } from 'src/page/landing-page/landing-page.component';
+import { MainDashboardComponent } from 'src/page/main-dashboard/main-dashboard.component';
+import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,10 @@ import { SuccessLoginComponent } from 'src/page/success-login/success-login.comp
     IotRegistrationPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
-    SuccessLoginComponent
+    SuccessLoginComponent,
+    LandingPageComponent,
+    MainDashboardComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans');
 
 *{
     box-sizing: border-box;
-    font-family: 'Noto Sans',sans-serif;
+    font-family: Readex Pro;
   }
 
 .irp {
@@ -33,7 +32,7 @@ margin: 170px auto;
 
 .rp .rp-header {
     height: 90px;
-    background: #16a085;
+    background: green;
     border-radius: 5px 5px 0 0;
     color: #fff;
     font-size: 30px;
@@ -91,7 +90,7 @@ form label {
     width: 100%;
     height: 40px;
     border-radius: 10px;
-    background: #5F9EA0;
+    background: #3CB043;
     color: white;
     border: none;
     cursor: pointer;

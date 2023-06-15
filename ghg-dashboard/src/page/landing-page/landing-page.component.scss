@@ -1,0 +1,59 @@
+* {
+    font-family: 'Readex Pro';
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.landing {
+    text-align: center;
+    flex: 1;
+    margin: auto;
+}
+
+.landingimg {
+    flex: 1;
+    // background-color: aliceblue;
+    background: url('../../assets/background/ghg-background.jpg');
+    background-position: 50% 70%;
+}
+
+.landing-header {
+    text-shadow: 4px 4px 8px #D3D3D3;
+}
+.landing-icon {
+
+    img {
+        width: 100px;
+    }
+}
+
+.landing-cta {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.landing-a {
+    border-radius: 8px;
+    background: green;
+    color: white;
+    width: fit-content;
+    margin-top: 7px;
+    padding: 7px;
+
+    a:visited {
+        color: white; 
+        text-decoration: none; 
+    }
+
+    a {
+        text-decoration: none; 
+    }
+}
