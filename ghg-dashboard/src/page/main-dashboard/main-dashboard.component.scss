@@ -1,10 +1,6 @@
-* {
-    font-family: Readex Pro;
-    background: #eeeeee;
-}
-
 .wrapper {
     display: flex;
+    background-color: #EEEEEE;
 }
 
 .main-dashboard {
@@ -14,4 +10,41 @@
 
 .card {
     background: white;
+    border-radius: 6px;
+    padding: 36px;
+    margin: 9px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+}
+
+.graph {
+    img {
+        width: 250px;
+        height: 250px;
+        border-radius: 5px;
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,.14);
+    }
+}
+
+.container {
+    margin: auto;
+    margin-top: 200px;
+}
+
+.header {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #3C4858;
+}
+
+.data {
+    margin-top: 6px;
+    color: #3C4858;
+}
+
+.text {
+    text-align: left;
+    padding-left: 26px;
 }

@@ -25,7 +25,7 @@ export class RegisterPageComponent {
     .subscribe(
       (response) => {
         console.log('Data sent successfully', response);
-        this.router.navigate(['/successful-registration']);
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error sending data', error)

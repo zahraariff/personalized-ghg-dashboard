@@ -13,6 +13,10 @@ import { SuccessLoginComponent } from 'src/page/success-login/success-login.comp
 import { LandingPageComponent } from 'src/page/landing-page/landing-page.component';
 import { MainDashboardComponent } from 'src/page/main-dashboard/main-dashboard.component';
 import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
+import { IotSensorPageComponent } from 'src/page/iot-sensor-page/iot-sensor-page.component';
+import { EditSensorModalComponent } from 'src/components/edit-sensor-modal/edit-sensor-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
     SuccessLoginComponent,
     LandingPageComponent,
     MainDashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    IotSensorPageComponent,
+    EditSensorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,7 @@ import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

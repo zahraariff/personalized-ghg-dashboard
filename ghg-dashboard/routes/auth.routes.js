@@ -1,5 +1,5 @@
-const { verifyRegistration } = require("../middleware");
 const controller = require("../controller/auth.controller");
+const iotController = require("../controller/iot.controller");
 
 module.exports = function(app) {
   // app.use(function(req, res, next) {
@@ -18,6 +18,21 @@ module.exports = function(app) {
   app.post(
     "/api/auth/login",
     controller.login
+  );
+
+  app.get(
+    "/api/iot-sensor",
+    iotController.getIoTList
+  );
+
+  app.patch(
+    "/api/iot/edit/:id",
+    iotController.updateIotSensor
+  );
+
+  app.delete(
+    "/api/iot/delete/:id", 
+    iotController.deleteIotSensor
   );
 
 };

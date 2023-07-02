@@ -1,0 +1,27 @@
+<div class="rp-container">
+    <div class="rp">
+    <h1 class="rp-header">Edit IoT Sensor</h1>
+    <form class="irp-form" [formGroup]="editIotSensorForm" (ngSubmit)="submitIotSensorForm(editIotSensorForm.value)">
+        <div class="irp-form-item">
+            <label for="deviceName">Device Name</label>
+            <input class="irp-form-input short--" type="text" formControlName="deviceName" id="deviceName">
+        </div>
+        <div class="irp-form-item">
+            <label for="deviceModel">Device Model</label>
+            <input class="irp-form-input" type="text" formControlName="deviceModel" id="deviceModel">
+        </div>
+        <div class="irp-form-item">
+            <label for="desc">Description</label>
+            <input class="irp-form-input" type="text" formControlName="desc" id="desc">
+        </div>
+        <div class="irp-form-item">
+            <label for="building">Building</label>
+            <input class="irp-form-input" type="text" formControlName="building" id="building">
+        </div>
+        <div class="rp-button">
+            <button type="submit">Save</button>
+        </div>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </form>
+    </div>
+</div>

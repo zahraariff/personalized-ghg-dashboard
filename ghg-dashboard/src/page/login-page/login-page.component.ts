@@ -36,7 +36,7 @@ export class LoginPageComponent {
     .subscribe(
       (response) => {
         console.log('Data sent successfully', response);
-        this.router.navigate(['/login-success']);
+        this.router.navigate(['/dashboard']);
         console.log(this.isLoggedIn);
       },
       (error) => {
