@@ -41,7 +41,7 @@ export class LoginPageComponent {
       },
       (error) => {
         console.error('Error sending data', error)
-        this.errorMessage = error.error.error;
+        this.errorMessage = "Username and password does not match";
       }
     )
   }

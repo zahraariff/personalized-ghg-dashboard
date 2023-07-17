@@ -5,20 +5,38 @@
         <div class="irp-form-item">
             <label for="username">Username</label>
             <input class="irp-form-input short--" type="text" formControlName="username" id="username">
+            <div class="rp-form-error" *ngIf="regForm.get('username')?.errors?.['required'] && regForm.get('username')?.touched">
+                Username is required
+            </div>
         </div>
         <div class="irp-form-item"> 
             <label for="email">Email</label>
             <input class="irp-form-input"type="text" formControlName="email" id="email">
-            <div class="rp-form-error" *ngIf="regForm.get('email')?.errors?.['email'] && regForm.get('email')?.touched">
-                Please enter a valid email address.
+            <div class="rp-form-error" *ngIf="regForm.get('email')?.errors?.['pattern'] && regForm.get('email')?.touched">
+                Please enter a valid email address ending with @um.edu.my
+            </div>
+            <div class="rp-form-error" *ngIf="regForm.get('email')?.errors?.['required'] && regForm.get('email')?.touched">
+                Email address is required
             </div>
         </div>
         <div class="irp-form-item">
             <label for="password">Password</label>
             <input class="irp-form-input" type="password" formControlName="password" id="password">
+            <div class="rp-form-error" *ngIf="regForm.get('password')?.errors?.['required'] && regForm.get('password')?.touched">
+                Password is required
+            </div>
+            <div class="rp-form-error" *ngIf="regForm.get('password')?.errors?.['whitespace'] && regForm.get('password')?.touched">
+                Password cannot start with blank space
+            </div>
+            <div class="rp-form-error" *ngIf="regForm.get('password')?.errors?.['minlength'] && regForm.get('password')?.touched">
+                Password must be at least 12 characters
+            </div>
+            <div class="rp-form-error" *ngIf="regForm.get('password')?.errors?.['passwordStrength'] && regForm.get('password')?.touched">
+                Password must be a combination of numbers, lowercase and uppercase alphabets
+            </div>
         </div>
         <div class="rp-button">
-            <button type="submit">Register</button>
+            <button type="submit" [disabled]="!regForm.valid">Register</button>
         </div>
         <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </form>

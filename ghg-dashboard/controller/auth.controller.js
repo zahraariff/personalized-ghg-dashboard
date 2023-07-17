@@ -16,8 +16,8 @@ exports.register = (req,res) => {
     }).then((existingUser) => {
         if (existingUser) {
             console.log('header 1 sent')
-            console.error('User already exists.')
-            return res.status(400).json({ error: 'User already exists' });
+            console.error('This email or username has already been registered.')
+            return res.status(400).json({ error: 'This email or username has already been registered' });
         } else {
             const newUser = new User({
                 username: req.body.username,
@@ -61,10 +61,21 @@ exports.login = async (req, res) => {
 
     // Generate a JWT
     const token = jwt.sign({ userId: user._id }, 'secret-key');
+    console.log(token);
     res.token = token;
     // Return the token to the client
     res.json({ token });
-    console.log(res.token)
+    // console.log(res.token)
 }
+
+exports.logout = async (req, res) => {
+    try {
+      res.token = null;
+      return res.status(200).send({ message: "You've been signed out!" });
+    } catch (err) {
+        console.log("logout unsuccessful")
+      this.next(err);
+    }
+  };
 
 

@@ -94,7 +94,13 @@ form label {
     color: white;
     border: none;
     cursor: pointer;
+
+    &:disabled {
+        background: rgb(216, 213, 213);
+        color: whitesmoke;
+    }
 }
+
 
 
 

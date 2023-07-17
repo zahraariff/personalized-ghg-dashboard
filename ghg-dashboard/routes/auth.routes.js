@@ -35,4 +35,9 @@ module.exports = function(app) {
     iotController.deleteIotSensor
   );
 
+  app.post(
+    "api/auth/logout",
+     controller.logout
+  )
+
 };
