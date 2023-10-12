@@ -10,10 +10,11 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard' },
     { path: '/iot-sensor', title: 'IoT Sensor' },
-    { path: '/dashboard', title: 'Emission Data' },
+    { path: '/emissions', title: 'Emission Data' },
     { path: '/dashboard', title: 'Graph' },
     { path: '/dashboard', title: 'Report' },
-    { path: '/home', title: 'User Profile' }
+    { path: '/home', title: 'User Profile' },
+
 ];
 
 
@@ -28,6 +29,7 @@ export class SidebarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    console.log('ngOnInit() in SidebarComponent is executed!');
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   };
 

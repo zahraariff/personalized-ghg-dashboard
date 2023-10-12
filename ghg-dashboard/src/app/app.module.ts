@@ -16,6 +16,7 @@ import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
 import { IotSensorPageComponent } from 'src/page/iot-sensor-page/iot-sensor-page.component';
 import { EditSensorModalComponent } from 'src/components/edit-sensor-modal/edit-sensor-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EmissionInputPageComponent } from 'src/page/emission-input-page/emission-input-page.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MainDashboardComponent,
     SidebarComponent,
     IotSensorPageComponent,
-    EditSensorModalComponent
+    EditSensorModalComponent,
+    EmissionInputPageComponent
   ],
   imports: [
     BrowserModule,

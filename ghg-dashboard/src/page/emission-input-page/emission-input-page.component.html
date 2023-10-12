@@ -1,0 +1,76 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="iot-container">
+        <div class="iot-c-title">
+            <h1>Greenhouse Gas Emissions Inventory</h1>
+        </div>
+        <div class="iot-button">
+            <a style="cursor: pointer" (click)="myModal.showModal()">Add New Data</a>
+        </div>
+        <div class="iot-c-table">  
+            <table class="iotc-table">
+                <thead>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Scope</th>
+                    <th>Total GHG Emissions (kg CO2e)</th>
+                    <th>Building</th>
+                </thead>
+                <tbody>
+                    <!-- <tr *ngFor="let iotSensor of iotSensors; let i = index" style="background-color: white;">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{iotSensor.deviceName}}</td>
+                        <td>{{iotSensor.deviceModel}}</td>
+                        <td>{{iotSensor.desc}}</td>
+                        <td>{{iotSensor.building}}</td>
+                        <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
+                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <dialog #myModal>
+            <img (click)="myModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+            <div class="rp-container">
+                <div class="rp">
+                <h1 class="rp-header">Add Gas Emission Data</h1>
+                <form class="irp-form" [formGroup]="addForm" >
+                    <div class="irp-form-item">
+                        <label for="emissionType">Type of Greenhouse Gas Emission</label>
+                        <!-- <input class="irp-form-input short--" type="text" formControlName="emissionType" id="emissionType"> -->
+                        <select class="em-select" name="type" id="">
+                            <option class="em-option" value="Transportation">Transportation</option>
+                            <option class="em-option" value="Lab Activity">Lab Activity</option>
+                            <option class="em-option" value="">Air Conditioning</option>
+                        </select>
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="emissionScope">Scope of Greenhouse Gas Emission</label>
+                        <!-- <input class="irp-form-input" type="text" formControlName="emissionScope" id="emissionScope"> -->
+                        <br>
+                        <select class="em-select" name="scope" id="">
+                            <option class="em-option" value="Scope 1">Scope 1</option>
+                            <option class="em-option" value="Scope 2">Scope 2</option>
+                            <option class="em-option" value="Scope 3">Scope 3</option>
+                        </select>
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="emissionFactor">Emission Factor</label>
+                        <br>
+                        <input class="irp-form-input" type="text" formControlName="emissionFactor" id="emissionFactor">
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="activityData">Activity Data</label>
+                        <input class="irp-form-input" type="text" formControlName="activityData" id="activityData">
+                    </div>
+                    <div class="rp-button">
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </dialog>
+    </div>
+
+ 
+
