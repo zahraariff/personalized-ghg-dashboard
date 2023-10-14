@@ -12,9 +12,9 @@ export class EmissionInputPageComponent {
 
   constructor(private formBuilder: FormBuilder){
     this.addForm = this.formBuilder.group({
-      emissionType: [],
-      emissionScope: [ ],
-      emissionFactor: [],
+      scope: ['Scope 1'],
+      dataType: ['Fuel Combustion'],
+      dataDesc: ['Volume of petrol consumed by fleet'],
       activityData: []
     });
   }

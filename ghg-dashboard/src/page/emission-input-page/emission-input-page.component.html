@@ -36,33 +36,67 @@
                 <h1 class="rp-header">Add Gas Emission Data</h1>
                 <form class="irp-form" [formGroup]="addForm" >
                     <div class="irp-form-item">
-                        <label for="emissionType">Type of Greenhouse Gas Emission</label>
-                        <!-- <input class="irp-form-input short--" type="text" formControlName="emissionType" id="emissionType"> -->
-                        <select class="em-select" name="type" id="">
-                            <option class="em-option" value="Transportation">Transportation</option>
-                            <option class="em-option" value="Lab Activity">Lab Activity</option>
-                            <option class="em-option" value="">Air Conditioning</option>
-                        </select>
-                    </div>
-                    <div class="irp-form-item">
                         <label for="emissionScope">Scope of Greenhouse Gas Emission</label>
                         <!-- <input class="irp-form-input" type="text" formControlName="emissionScope" id="emissionScope"> -->
                         <br>
-                        <select class="em-select" name="scope" id="">
+                        <select class="em-select" name="scope" id="" formControlName="scope">
                             <option class="em-option" value="Scope 1">Scope 1</option>
                             <option class="em-option" value="Scope 2">Scope 2</option>
                             <option class="em-option" value="Scope 3">Scope 3</option>
                         </select>
                     </div>
+                        <div class="irp-form-item">
+                            <label for="activityDataType">Activity Data Type</label>
+                            <br>
+                            <select class="em-select" name="dataType" id="" formControlName="dataType">
+                                <ng-container *ngIf="this.addForm.controls['scope'].value === 'Scope 1'">
+                                    <option class="em-option" value="Fuel Combustion">Fuel Combustion</option>
+                                    <option class="em-option" value="Other emissions">Other</option>
+                                </ng-container>  
+                                <ng-container *ngIf="this.addForm.controls['scope'].value === 'Scope 2'">
+                                    <option class="em-option" value="Electricity Consumption">Electricity Consumption</option>
+                                </ng-container>
+                                <ng-container *ngIf="this.addForm.controls['scope'].value === 'Scope 3'">
+                                    <option class="em-option" value="Water Usage">Water Usage</option>
+                                    <option class="em-option" value="Waste Management">Waste Management</option>
+                                </ng-container>
+                            </select>
+                        </div>
+
+                        <div class="irp-form-item">
+                            <label for="activityDataType">Activity Data Description</label>
+                            <p>{{this.addForm.controls['dataType'].value}}</p>
+                            <br>
+                            <select class="em-select" name="dataDesc" id="" formControlName="dataDesc">
+                                <ng-container *ngIf="this.addForm.controls['dataType'].value === 'Fuel Combustion'">
+                                    <option class="em-option" value="Volume of petrol consumed by fleet">Volume of petrol consumed by fleet</option>
+                                    <option class="em-option" value="Volume of diesel consumed by fleet">Volume of diesel consumed by fleet</option>
+                                    <option class="em-option" value="Volume of diesel consumed by machinery/facilities">Volume of diesel consumed by machinery/facilities</option>
+                                </ng-container>
+                                <ng-container *ngIf="this.addForm.controls['dataType'].value === 'Other emissions'">
+                                    <option class="em-option" value="Volume of CO2 consumed by refrigerant">Volume of CO2 consumed by refrigerant</option>
+                                    <option class="em-option" value="Num of refrigerant used for facilities">Num of refrigerant used for facilities</option>
+                                </ng-container>
+                                <ng-container *ngIf="this.addForm.controls['dataType'].value === 'Electricity Consumption'">
+                                    <option class="em-option" value="Amount of electricity purchased">Amount of electricity purchased</option>
+                                </ng-container>
+                                <ng-container *ngIf="this.addForm.controls['dataType'].value === 'Water Usage'" >
+                                    <option class="em-option" value="Amount of water usage">Amount of water usage</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    
                     <div class="irp-form-item">
+                        <label for="activityDataType">Activity Data Value</label>
+                        <br>
+                        <input type="text">
+                        <span style="margin-left:-20px;">lb</span>
+                    </div>
+                    <!-- <div class="irp-form-item">
                         <label for="emissionFactor">Emission Factor</label>
                         <br>
                         <input class="irp-form-input" type="text" formControlName="emissionFactor" id="emissionFactor">
-                    </div>
-                    <div class="irp-form-item">
-                        <label for="activityData">Activity Data</label>
-                        <input class="irp-form-input" type="text" formControlName="activityData" id="activityData">
-                    </div>
+                    </div> -->
                     <div class="rp-button">
                         <button type="submit">Save</button>
                     </div>
