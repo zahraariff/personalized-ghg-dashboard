@@ -15,7 +15,7 @@ export class EmissionInputPageComponent {
       scope: ['Scope 1'],
       dataType: ['Fuel Combustion'],
       dataDesc: ['Volume of petrol consumed by fleet'],
-      activityData: []
+      dataValue: []
     });
   }
 

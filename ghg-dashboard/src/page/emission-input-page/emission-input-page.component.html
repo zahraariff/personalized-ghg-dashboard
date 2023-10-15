@@ -91,7 +91,7 @@
                     <div class="irp-form-item">
                         <label for="activityDataType">Activity Data Value</label>
                         <br>
-                        <input type="text">
+                        <input type="text" formControlNAme="dataValue">
                         <span style="margin-left:-45px;" *ngIf="this.addForm.controls['dataDesc'].value === 'Volume of petrol consumed by fleet' || 
                         this.addForm.controls['dataDesc'].value === 'Volume of diesel consumed by fleet' || 
                         this.addForm.controls['dataDesc'].value === 'Volume of diesel consumed by machinery/facilities'">litres</span>
