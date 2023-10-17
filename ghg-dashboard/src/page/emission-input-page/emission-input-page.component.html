@@ -11,21 +11,21 @@
             <table class="iotc-table">
                 <thead>
                     <th>Date</th>
-                    <th>Type</th>
-                    <th>Scope</th>
-                    <th>Total GHG Emissions (kg CO2e)</th>
-                    <th>Building</th>
+                    <th>Scope of Greenhouse Gas Emission</th>
+                    <th>Activity Data Type</th>
+                    <th>Activity Data Description</th>
+                    <th>Activity Data Value</th>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let iotSensor of iotSensors; let i = index" style="background-color: white;">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{iotSensor.deviceName}}</td>
-                        <td>{{iotSensor.deviceModel}}</td>
-                        <td>{{iotSensor.desc}}</td>
-                        <td>{{iotSensor.building}}</td>
-                        <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
-                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td>
-                    </tr> -->
+                    <tr *ngFor="let data of emissionData; let i = index" style="background-color: white;">
+                        <td></td>
+                        <td>{{data.scope}}</td>
+                        <td>{{data.dataType}}</td>
+                        <td>{{data.dataDesc}}</td>
+                        <td>{{data.dataValue}}</td>
+                        <!-- <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
+                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td> -->
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -91,7 +91,7 @@
                     <div class="irp-form-item">
                         <label for="activityDataType">Activity Data Value</label>
                         <br>
-                        <input type="text" formControlNAme="dataValue">
+                        <input type="text" formControlName="dataValue">
                         <span style="margin-left:-45px;" *ngIf="this.addForm.controls['dataDesc'].value === 'Volume of petrol consumed by fleet' || 
                         this.addForm.controls['dataDesc'].value === 'Volume of diesel consumed by fleet' || 
                         this.addForm.controls['dataDesc'].value === 'Volume of diesel consumed by machinery/facilities'">litres</span>
@@ -105,7 +105,7 @@
                         <input class="irp-form-input" type="text" formControlName="emissionFactor" id="emissionFactor">
                     </div> -->
                     <div class="rp-button">
-                        <button type="submit">Save</button>
+                        <button type="submit" (click)="emSubmit(addForm.value)">Save</button>
                     </div>
                 </form>
                 </div>

@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.mongodb.net/";
 // console.log(process.env.DATABASE_URL);
 const routes = require('./routes/routes');
+const emissionDataRoutes = require('./routes/emissionData.routes');
 const router = express.Router()
 const cors = require('cors');
 const cookieSession = require("cookie-session");
@@ -58,6 +59,7 @@ app.use(
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
+
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
@@ -91,6 +93,7 @@ function initial() {
     })
 }
 
+app.use('', emissionDataRoutes)
 
 
 

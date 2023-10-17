@@ -15,8 +15,7 @@ let emissionData = new Schema({
     },
     dataValue: {
         type: Number
-    }, 
-    collection: 'emissionData'
+    }
 });
 
 module.exports = mongoose.model('emissionData', emissionData);
