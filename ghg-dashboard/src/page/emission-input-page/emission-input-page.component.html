@@ -107,6 +107,7 @@
                     <div class="rp-button">
                         <button type="submit" (click)="emSubmit(addForm.value)">Save</button>
                     </div>
+                    <div *ngIf="message" style="text-align: center; padding-top: 10px;">You have sucessfully added!</div>
                 </form>
                 </div>
             </div>

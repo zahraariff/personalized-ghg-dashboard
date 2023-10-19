@@ -23,6 +23,8 @@ export class EmissionInputPageComponent {
     });
   }
 
+  message: boolean = false;
+
   ngOnInit(): void{
     var data, dataList;
     data = this.emissionDataService.retrieveEmissionDataList();
@@ -35,6 +37,8 @@ export class EmissionInputPageComponent {
     .subscribe(
       (response) => {
         console.log('Data sent sucessfully', response);
+        this.message = true;
+        setTimeout(function(){ window. location. reload(); }, 3000);
       },
       (error) => {
         console.error('Error sending data', error)

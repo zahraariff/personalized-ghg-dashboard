@@ -20,6 +20,9 @@ export class IotSensorPageComponent implements OnInit{
   editForm: FormGroup;
   regForm: FormGroup;
   sensorID: any;
+  
+
+  // temp: any = [1,2,2,2,2,2,2,22,2,2,2,2,2,2,22,2,2,2,2,2,22,2,2,2,2,];
 
   constructor(private iotSensorListService: IotSensorListService, private modalService: NgbModal, private router: Router,
     private formBuilder: FormBuilder, private iotRegistrationService: IotRegistrationService){
@@ -41,6 +44,8 @@ export class IotSensorPageComponent implements OnInit{
       });
     }
 
+    message: boolean = false;
+
   ngOnInit(): void {
     var sensor, sensorList;
     sensor = this.iotSensorListService.retrieveIotList();
@@ -61,6 +66,8 @@ export class IotSensorPageComponent implements OnInit{
     .subscribe(
       (response) => {
         console.log('Data sent successfully', response);
+        this.message = true;
+        setTimeout(function(){ window. location. reload(); }, 3000);
       },
       (error) => {
         console.error('Error sending data', error)
@@ -76,7 +83,21 @@ export class IotSensorPageComponent implements OnInit{
   }
 
   deleteIotSensor(){
-    this.iotRegistrationService.deleteIotSensor(this.sensorID);
+    console.log("delete clicked")
+    this.iotRegistrationService.deleteIotSensor(this.sensorID)
+    .subscribe(
+      (response) => {
+        console.log('Data sent successfully', response);
+        window.alert("IoT sensor deleting successfully!");
+        setTimeout(function(){ window. location. reload(); }, 3000);
+
+      },
+      (error) => {
+        console.error('Error sending data', error)
+        window.alert("Error in deleting the IoT Sensor");
+      }
+    );
+    // setTimeout(function(){ window. location. reload(); }, 3000);
   }
 
   submitRegData(item:any){

@@ -34,5 +34,7 @@ export class IotRegistrationService {
     console.log('delete service called')
     console.log(`${delUrl}/${item}`);
     return this.http.delete(`${delUrl}/${item}`);
+    // return this.http.delete(delUrl + '/' + item)
+    // return this.http.request('DELETE', `${delUrl}/${item}`)
   }
 }

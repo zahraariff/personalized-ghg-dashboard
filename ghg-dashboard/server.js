@@ -9,6 +9,7 @@ const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.
 // console.log(process.env.DATABASE_URL);
 const routes = require('./routes/routes');
 const emissionDataRoutes = require('./routes/emissionData.routes');
+const iotRoutes = require('./routes/auth.routes');
 const router = express.Router()
 const cors = require('cors');
 const cookieSession = require("cookie-session");
@@ -32,6 +33,7 @@ app.use(cors())
 
 // User registration and login
 const db = require("./model/role.model");
+const authRoutes = require('./routes/auth.routes');
 const Role = db.role;
 
 const corsOptions = {
@@ -56,7 +58,7 @@ app.use(
   );
 
 
-require('./routes/auth.routes')(app);
+// require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
 
@@ -94,6 +96,7 @@ function initial() {
 }
 
 app.use('', emissionDataRoutes)
+app.use('', authRoutes)
 
 
 
