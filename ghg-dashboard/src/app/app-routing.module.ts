@@ -10,6 +10,7 @@ import { LandingPageComponent } from 'src/page/landing-page/landing-page.compone
 import { MainDashboardComponent } from 'src/page/main-dashboard/main-dashboard.component';
 import { IotSensorPageComponent } from 'src/page/iot-sensor-page/iot-sensor-page.component';
 import { EmissionInputPageComponent } from 'src/page/emission-input-page/emission-input-page.component';
+import { EditProfilePageComponent } from 'src/page/edit-profile-page/edit-profile-page.component';
 
 const routes: Routes = [
   {path: 'register-iot-sensor', component: IotRegistrationPageComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'home', component: LandingPageComponent},
   {path: 'dashboard', component: MainDashboardComponent, canActivate: [authGuard]},
   {path: 'iot-sensor', component: IotSensorPageComponent, canActivate: [authGuard]},
-  {path: 'emissions', component: EmissionInputPageComponent, canActivate: [authGuard]}
+  {path: 'emissions', component: EmissionInputPageComponent, canActivate: [authGuard]},
+  {path: 'edit-profile', component: EditProfilePageComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

@@ -23,8 +23,8 @@
                         <td>{{data.dataType}}</td>
                         <td>{{data.dataDesc}}</td>
                         <td>{{data.dataValue}}</td>
-                        <!-- <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
-                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td> -->
+                        <td (click)="editModal.showModal()"><img (click)="editEmissionData(data._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
+                        <td (click)="deleteModal.showModal()"><img (click)="editEmissionData(data._id)" src="../assets/icons/trash.png" alt="" class="edit"></td>
                     </tr>
                 </tbody>
             </table>
@@ -112,6 +112,43 @@
                 </div>
             </div>
         </dialog>
+        <dialog #editModal>
+            <img (click)="editModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+            <div class="rp-container">
+                <div class="rp">
+                <h1 class="rp-header">Edit Emission Data</h1>
+                <form class="irp-form" [formGroup]="editForm" (ngSubmit)="editData(editForm.value)">
+                    <div class="irp-form-item">
+                        <label for="deviceName">Scope of Greenhouse Gas Emission</label>
+                        <input class="irp-form-input short--" type="text" formControlName="scope" id="scope">
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="deviceModel">Activity Data Type</label>
+                        <input class="irp-form-input" type="text" formControlName="dataType" id="dataType">
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="desc">Activity Data Description</label>
+                        <input class="irp-form-input" type="text" formControlName="dataDesc" id="dataDesc">
+                    </div>
+                    <div class="irp-form-item">
+                        <label for="building">Activity Data Value</label>
+                        <input class="irp-form-input" type="text" formControlName="dataValue" id="dataValue">
+                    </div>
+                    <div class="rp-button">
+                        <button type="submit">Save</button>
+                    </div>
+                    <div *ngIf="message" style="text-align: center; padding-top: 10px;">You have sucessfully edited!</div>
+                </form>
+                </div>
+            </div>
+        </dialog>     
+        <dialog #deleteModal clas="deleteDialog">
+            <div class="confirmationMsg">Are you sure you want to delete this sensor?</div>
+            <div class="deleteButtons">
+                <button (click)="deleteEmissionData()">Yes</button>
+                <button (click)="deleteModal.close()">No</button>
+            </div>
+        </dialog>   
     </div>
 
  

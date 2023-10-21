@@ -17,6 +17,7 @@ import { IotSensorPageComponent } from 'src/page/iot-sensor-page/iot-sensor-page
 import { EditSensorModalComponent } from 'src/components/edit-sensor-modal/edit-sensor-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmissionInputPageComponent } from 'src/page/emission-input-page/emission-input-page.component';
+import { EditProfilePageComponent } from 'src/page/edit-profile-page/edit-profile-page.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { EmissionInputPageComponent } from 'src/page/emission-input-page/emissio
     SidebarComponent,
     IotSensorPageComponent,
     EditSensorModalComponent,
-    EmissionInputPageComponent
+    EmissionInputPageComponent,
+    EditProfilePageComponent
   ],
   imports: [
     BrowserModule,

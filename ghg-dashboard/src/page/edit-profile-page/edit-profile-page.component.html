@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <form class="irp-form" [formGroup]="editUserProfileForm" (ngSubmit)="submitUserData(editUserProfileForm.value)">
+        <div class="irp-form-item">
+            <label for="username">Email</label>
+            <input class="irp-form-input short--" type="text" formControlName="usernameEmail" id="username">
+        </div>
+        <div class="irp-form-item">
+            <label for="username">Username</label>
+            <input class="irp-form-input short--" type="text" formControlName="usernameEmail" id="username">
+        </div>
+        <div class="irp-form-item">
+            <label for="password">Password</label>
+            <input class="irp-form-input" type="password" formControlName="password" id="password">
+        </div>
+        <div class="rp-button">
+            <button type="submit">Save Edits</button>
+        </div>
+    </form>
+</div>
