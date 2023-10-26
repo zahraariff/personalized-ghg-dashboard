@@ -10,8 +10,9 @@ cookieRoute.get('/get-role-cookie', (req, res) => {
     res.json({ role: roleCookie });
 });
 
-// cookieRoute.get('set-role-cookie', (req, res) => {
-//   res.json({ role: roleCookie });
+// cookieRoute.get('/set-role-cookie', (req, res) => {
+//   res.cookie('role', 'admin');
+//   res.json({role: req.cookies})
 // });
 
 module.exports = cookieRoute;

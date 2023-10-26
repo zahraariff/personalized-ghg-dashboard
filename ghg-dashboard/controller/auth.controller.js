@@ -65,6 +65,8 @@ exports.login = async (req, res) => {
         // Access and use the user's roles property
         const userRoles = user.roles;
         console.log(`User Roles: ${userRoles}`);
+
+        res.json({ role: userRoles})
     }
 
     // Generate a JWT
@@ -75,7 +77,7 @@ exports.login = async (req, res) => {
     // Set user role as cookies 
     console.log(user.roles)
     res.cookie('role', user.roles, {httpOnly: false});
-    next();
+    // res.send();
 
     // Return the token to the client
     res.json({ token });

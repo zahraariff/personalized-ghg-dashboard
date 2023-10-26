@@ -47,7 +47,8 @@ const Role = db.role;
 const corsOptions = {
     origin: '*', // Replace with your allowed origin
     methods: 'GET, POST, PUT, DELETE',
-    allowedHeaders: 'Content-Type, Authorization'
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
   };
   // Enable CORS with options
 app.use(cors(corsOptions));

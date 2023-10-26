@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CookieModule } from 'ngx-cookie';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +46,8 @@ import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    CookieModule
   ],
   providers: [],
   bootstrap: [AppComponent]
