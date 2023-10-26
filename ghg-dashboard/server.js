@@ -10,8 +10,6 @@ const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.
 const routes = require('./routes/routes');
 const emissionDataRoutes = require('./routes/emissionData.routes');
 const cookieRoutes = require('./routes/cookie.routes');
-const iotRoutes = require('./routes/auth.routes');
-const router = express.Router()
 const cors = require('cors');
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
@@ -68,7 +66,6 @@ app.use(
   );
 
 
-// require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
 
@@ -77,33 +74,6 @@ app.listen(3000, () => {
 });
 
 app.use('/api', routes)
-
-// User registration and login
-function initial() {
-    Role.estimatedDocumentCount((err, count) => {
-        if (!err && count === 0){
-            new Role({
-                name: "user"
-            }).save(err => {
-                if (err) {
-                    console.log("error", err);
-                }
-
-                console.log("added 'user' to roles collection");
-            });
-
-            new Role({
-                name: "admin"
-            }).save(err => {
-                if (err) {
-                    console.log("error", err);
-                }
-
-                console.log("added 'admin' to roles collection");
-            });
-        }
-    })
-}
 
 app.use('', emissionDataRoutes)
 app.use('', authRoutes)
