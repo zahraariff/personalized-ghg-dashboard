@@ -1,6 +1,6 @@
 <div class="wrapper">
     <app-sidebar></app-sidebar>
-    <div class="container">
+    <!-- <div class="container">
         <div class="main-dashboard">
             <div class="card">
                 <div class="graph">
@@ -30,5 +30,38 @@
                 </div>
             </div>
         </div>
+    </div> -->
+    <div>
+        <button (click)="addGraphModal.showModal()">Add Graph</button>
+        <div class="dashboard-iframe">
+            
+        </div>
     </div>
+
+    <dialog #addGraphModal>
+        <img (click)="addGraphModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+        <div class="addgraph-container">
+            <h1 class="agc-header">Choose the graphs that you'd like to highlight:</h1>
+            <form class="agc-form">
+                <div>
+                    <input type="checkbox" name="iframe1" value="iframe1">
+                    <label for="">Percentage of Greenhouse Gas Emissions by Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="iframe2" value="iframe2">
+                    <label for="">Monthly Sum of Greenhouse Gas Emission Sorted By Source</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="iframe3" value="iframe3">
+                    <label for="">Sum of Greenhouse Gas Emissions Tracked in CO2</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="iframe4" value="iframe4">
+                    <div class="agc-button">
+                </div>
+                    <button>Save</button>
+                </div>
+            </form>
+        </div>
+    </dialog>  
 </div>

@@ -9,10 +9,12 @@ const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.
 // console.log(process.env.DATABASE_URL);
 const routes = require('./routes/routes');
 const emissionDataRoutes = require('./routes/emissionData.routes');
+const cookieRoutes = require('./routes/cookie.routes');
 const iotRoutes = require('./routes/auth.routes');
 const router = express.Router()
 const cors = require('cors');
 const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 
 // Connect the db to this server using Mongoose
 mongoose.connect(mongoString);
@@ -30,6 +32,14 @@ database.once('connected', () => {
 //Create new instance of the express server
 const app = express();
 app.use(cors())
+app.use(cookieParser());
+
+app.use(function(req, res, next) {  
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});  
+
 
 // User registration and login
 const db = require("./model/role.model");
@@ -97,6 +107,7 @@ function initial() {
 
 app.use('', emissionDataRoutes)
 app.use('', authRoutes)
+app.use('', cookieRoutes)
 
 
 

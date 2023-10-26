@@ -2,6 +2,10 @@ const config = require("../config/auth.config");
 const db = require("../model");
 const User = db.user;
 const Role = db.role;
+const cookieParser = require("cookie-parser");
+const express = require('express');
+const app = express();
+app.use(cookieParser())
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -57,15 +61,24 @@ exports.login = async (req, res) => {
         return res.status(401).json({ error: 'Invalid credentials' });
     } else {
         console.log("Logged In");
+
+        // Access and use the user's roles property
+        const userRoles = user.roles;
+        console.log(`User Roles: ${userRoles}`);
     }
 
     // Generate a JWT
     const token = jwt.sign({ userId: user._id }, 'secret-key');
     console.log(token);
     res.token = token;
+
+    // Set user role as cookies 
+    console.log(user.roles)
+    res.cookie('role', user.roles, {httpOnly: false});
+    next();
+
     // Return the token to the client
     res.json({ token });
-    // console.log(res.token)
 }
 
 exports.logout = async (req, res) => {

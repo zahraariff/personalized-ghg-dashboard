@@ -13,10 +13,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  private isAuthenticated = false;
 
   constructor(private http: HttpClient) { }
 
   login(usernameEmail: string, password: string): Observable<any> {
+    this.isAuthenticated = true;
     return this.http.post(
       baseUrl,
       {
@@ -28,12 +30,21 @@ export class AuthService {
   }
 
   logout(){
+    this.isAuthenticated = false;
     return this.http.post(logoutUrl, {});
   }
 
   isClear(){
     let authToken = localStorage.getItem('access_token');
     console.log(authToken);
+  }
+
+  getAuthenticationStatus(): boolean {
+    return this.isAuthenticated;
+  }
+
+  getUserRole(){
+    
   }
 
 }

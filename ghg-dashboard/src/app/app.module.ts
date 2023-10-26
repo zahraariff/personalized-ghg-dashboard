@@ -18,7 +18,8 @@ import { EditSensorModalComponent } from 'src/components/edit-sensor-modal/edit-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmissionInputPageComponent } from 'src/page/emission-input-page/emission-input-page.component';
 import { EditProfilePageComponent } from 'src/page/edit-profile-page/edit-profile-page.component';
-
+import { GraphPageComponent } from 'src/page/graph-page/graph-page.component';
+import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { EditProfilePageComponent } from 'src/page/edit-profile-page/edit-profil
     IotSensorPageComponent,
     EditSensorModalComponent,
     EmissionInputPageComponent,
-    EditProfilePageComponent
+    EditProfilePageComponent,
+    GraphPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

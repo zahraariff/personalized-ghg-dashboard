@@ -48,3 +48,40 @@
     text-align: left;
     padding-left: 26px;
 }
+
+::ng-deep {
+
+    dialog {
+        border: none;
+        border-radius: 10px;
+        padding: 0;
+    }
+
+    .addgraph-container {
+        max-width: 440px;
+    }
+
+    .modal-close {
+        position: absolute;
+        width: 36px;
+        top: 28px;
+        left: 10px;
+        cursor: pointer;
+    }
+
+    .agc-header {
+        padding: 10px;
+        padding-top: 20px;
+        height: 90px;
+        background: green;
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        text-align: center;
+    }
+}
