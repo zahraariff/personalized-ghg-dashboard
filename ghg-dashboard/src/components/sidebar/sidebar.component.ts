@@ -29,8 +29,7 @@ export class SidebarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    console.log('ngOnInit() in SidebarComponent is executed!');
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.updateMenuItems();
   };
 
   logout(){
@@ -41,6 +40,15 @@ export class SidebarComponent implements OnInit {
 
   isClear(){
     this.authService.isClear();
+  }
+
+  updateMenuItems(){
+    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    const role = localStorage.getItem('role');
+    
+    if (role === 'admin') {
+      this.menuItems.push({ path: '/admin', title: 'Admin'});
+    }
   }
  
 }

@@ -66,21 +66,45 @@ exports.login = async (req, res) => {
         const userRoles = user.roles;
         console.log(`User Roles: ${userRoles}`);
 
-        res.json({ role: userRoles})
+        // Generate a JWT
+        const token = jwt.sign({ userId: user._id }, 'secret-key');
+        console.log(token);
+        res.token = token;
+
+        // Return the token to the client
+        res.json({ token, userRoles }); 
+    }
+}
+
+exports.loginAsAdmin = async (req, res) => {
+    console.log(req.body);
+
+    const { username, email, password } = req.body;
+
+    let user;
+    if (username) {
+        user = await User.findOne({ username });
+    } else if (email) {
+        user = await User.findOne({ email });
     }
 
-    // Generate a JWT
-    const token = jwt.sign({ userId: user._id }, 'secret-key');
-    console.log(token);
-    res.token = token;
+    // Check if the user exists and the password is correct
+    if (!user || !bcrypt.compareSync(password, user.password) || user.roles.includes('user')) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    } else {
+        console.log("Logged In");
 
-    // Set user role as cookies 
-    console.log(user.roles)
-    res.cookie('role', user.roles, {httpOnly: false});
-    // res.send();
+        // Set user role as cookies 
+        console.log(user.roles)
 
-    // Return the token to the client
-    res.json({ token });
+        // Generate a JWT
+        const token = jwt.sign({ userId: user._id }, 'secret-key');
+        console.log(token);
+        res.token = token;
+
+        // Return the token to the client
+        res.json({ token }); 
+    }
 }
 
 exports.logout = async (req, res) => {

@@ -1,7 +1,7 @@
 <div class="rp-container">
     <div class="rp">
     <h1 class="rp-header">Log In</h1>
-    <form class="irp-form" [formGroup]="loginForm" (ngSubmit)="submitLogInData(loginForm.value)">
+    <form class="irp-form" [formGroup]="loginForm">
         <div class="irp-form-item">
             <label for="username">Username/Email</label>
             <input class="irp-form-input short--" type="text" formControlName="usernameEmail" id="username">
@@ -11,7 +11,8 @@
             <input class="irp-form-input" type="password" formControlName="password" id="password">
         </div>
         <div class="rp-button">
-            <button type="submit">Log In</button>
+            <button type="submit" (click)="submitAsAdmin(loginForm.value)">Log In As Admin</button>
+            <button type="submit" (click)="submitAsUser(loginForm.value)"> Log In As User</button>
         </div>
         <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </form>

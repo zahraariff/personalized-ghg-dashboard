@@ -1,2 +1,168 @@
-<p *ngIf="isAdmin">admin-page works!</p>
-<p>user and admin can see</p>
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="admin-container">
+        <div class="admin-title"> 
+            <h1>Manage Emission Data</h1>
+        </div>
+        <div class="admin-div"> 
+            <div class="admin-button">
+                <a style="cursor: pointer" (click)="addScopeModal.showModal()">Add New Emission Scope</a>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <th>Scope of Greenhouse Gas Emission</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of scopeData; let i = index" style="background-color: white;"> 
+                        <td>{{data.name}}</td>
+                        <td class="editTd" (click)="deleteScopeModal.showModal()"><img src="../assets/icons/trash.png" alt="" class="edit" (click)="getId(data._id)"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="admin-button">
+                <a style="cursor: pointer" (click)="addActivityDataTypeModal.showModal()">Add New Activity Data Type</a>
+            </div>
+            <table class="admin-table width--">
+                <thead>
+                    <th style="width: 50%;">Activity Data Type</th>
+                    <th>Scope</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of dataTypes; let i = index" style="background-color: white;"> 
+                        <td>{{data.name}}</td>
+                        <td>{{data.scope}}</td>
+                        <td class="editTd" (click)="deleteDataTypeModal.showModal()"><img (click)="getId(data._id)" src="../assets/icons/trash.png" alt="" class="edit"></td> 
+                    </tr>
+                </tbody>
+            </table>
+            <div class="admin-button">
+                <a style="cursor: pointer" (click)="addActivityDataDescModal.showModal()">Add New Activity Data Description</a>
+            </div>
+            <table class="admin-table">
+                <thead>
+                    <th>Activity Data Description</th>
+                    <th>Activity Data Type</th>
+                    <th>Scope</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of dataDesc; let i = index" style="background-color: white;"> 
+                        <td>{{data.name}}</td>
+                        <td>{{data.type}}</td>
+                        <td>{{data.scope}}</td>
+                        <td class="editTd" (click)="deleteDataDescModal.showModal()"><img (click)="getId(data._id)" src="../assets/icons/trash.png" alt="" class="edit"></td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Dialogs -->
+
+<dialog #addScopeModal>
+    <img (click)="addScopeModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+        <div class="rp-container">
+            <div class="rp">
+            <h1 class="rp-header">Add New Emission Scope</h1>
+            <form class="irp-form" [formGroup]="addScopeForm" >
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Name of New Scope</label>
+                    <input class="irp-form-input" type="text" formControlName="name" id="emissionScope">
+                </div>
+                <div class="rp-button">
+                    <button type="submit" (click)="addScopeFormSubmit(addScopeForm.value)">Save</button>
+                </div>
+                <div *ngIf="message" style="text-align: center; padding-top: 10px;">You have sucessfully added!</div>
+            </form>
+            </div>
+        </div>
+</dialog>
+
+<dialog #addActivityDataTypeModal>
+    <img (click)="addActivityDataTypeModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+        <div class="rp-container">
+            <div class="rp">
+            <h1 class="rp-header">Add New Activity Data Type</h1>
+            <form class="irp-form" [formGroup]="addActivityDataTypeForm" >
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Name of New Activity Data Type</label>
+                    <input class="irp-form-input" type="text" formControlName="name" id="emissionScope">
+                </div>
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Scope of The New Activity Data Type</label>
+                    <!-- <input class="irp-form-input" type="text" formControlName="scope" id="emissionScope"> -->
+                    <select class="em-select" name="scope" id="" formControlName="scope">
+                        <ng-container *ngFor = "let data of scopeData">
+                            <option value={{data.name}}>{{data.name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="rp-button">
+                    <button type="submit" (click)="addActivityDataTypeFormSubmit(addActivityDataTypeForm.value)">Save</button>
+                </div>
+                <div *ngIf="message" style="text-align: center; padding-top: 10px;">You have sucessfully added!</div>
+            </form>
+            </div>
+        </div>
+</dialog>
+
+<dialog #addActivityDataDescModal>
+    <img (click)="addActivityDataDescModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+        <div class="rp-container">
+            <div class="rp">
+            <h1 class="rp-header long--">Add New Activity Data Description</h1>
+            <form class="irp-form" [formGroup]="addActivityDataDescForm" >
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Name of New Activity Data Description</label>
+                    <input class="irp-form-input" type="text" formControlName="name" id="emissionScope">
+                </div>
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Scope of The New Activity Data Description</label>
+                    <!-- <input class="irp-form-input" type="text" formControlName="type" id="emissionScope"> -->
+                    <select class="em-select" name="scope" id="" formControlName="scope">
+                        <ng-container *ngFor = "let data of scopeData">
+                            <option value={{data.name}}>{{data.name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="irp-form-item">
+                    <label for="emissionScope">Insert Activity Data Type of The New Activity Data Description</label>
+                    <!-- <input class="irp-form-input" type="text" formControlName="scope" id="emissionScope"> -->
+                    <select class="em-select" name="scope" id="" formControlName="type">
+                        <ng-container *ngFor = "let data of dataTypes">
+                            <option value={{data.name}}>{{data.name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="rp-button">
+                    <button type="submit" (click)="addActivityDataDescFormSubmit(addActivityDataDescForm.value)">Save</button>
+                </div>
+                <div *ngIf="message" style="text-align: center; padding-top: 10px;">You have sucessfully added!</div>
+            </form>
+            </div>
+        </div>
+</dialog>
+
+<dialog #deleteScopeModal class="deleteDialog">
+    <div class="confirmationMsg">Are you sure you want to delete?</div>
+    <div class="deleteButtons">
+        <button (click)="deleteScope()">Yes</button>
+        <button (click)="deleteScopeModal.close()">No</button>
+    </div>
+</dialog> 
+
+<dialog #deleteDataTypeModal class="deleteDialog">
+    <div class="confirmationMsg">Are you sure you want to delete?</div>
+    <div class="deleteButtons">
+        <button (click)="deleteDataType()">Yes</button>
+        <button (click)="deleteDataTypeModal.close()">No</button>
+    </div>
+</dialog> 
+
+<dialog #deleteDataDescModal class="deleteDialog">
+    <div class="confirmationMsg">Are you sure you want to delete?</div>
+    <div class="deleteButtons">
+        <button (click)="deleteDataDesc()">Yes</button>
+        <button (click)="deleteDataDescModal.close()">No</button>
+    </div>
+</dialog> 

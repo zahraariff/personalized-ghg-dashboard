@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 const baseUrl = 'http://localhost:3000/api/auth/login'
+const adminUrl = 'http://localhost:3000/api/auth/admin-login'
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,14 @@ export class LoginService {
     return authToken !== null ? true: false;
   }
 
+  loginAsAdmin(data: any): Observable<any> {
+    return this.http
+    .post<any>(adminUrl, data)
+    .pipe(map((res: any) => {
+      localStorage.setItem('access_token', res.token);
+      localStorage.setItem('role', 'admin');
+      return res;
+    }));
+  }
 
 }

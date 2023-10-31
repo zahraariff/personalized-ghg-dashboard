@@ -23,7 +23,7 @@ export class LoginPageComponent {
     });
   }
 
-  submitLogInData(item: any){
+  submitAsUser(item: any){
     const { usernameEmail, password } = item;
 
     const isEmail = /\S+@\S+\.\S+/.test(usernameEmail);
@@ -42,6 +42,28 @@ export class LoginPageComponent {
       (error) => {
         console.error('Error sending data', error)
         this.errorMessage = "Username and password does not match";
+      }
+    )
+  }
+
+  submitAsAdmin(item: any){
+    const { usernameEmail, password, role } = item;
+    const isEmail = /\S+@\S+\.\S+/.test(usernameEmail);
+    const loginData = {
+      [isEmail ? 'email' : 'username']: usernameEmail,
+      password: password
+    };
+
+    this.loginService.loginAsAdmin(loginData)
+    .subscribe(
+      (response) => {
+        console.log('Data sent successfully', response);
+        this.router.navigate(['/admin']);
+        console.log(this.isLoggedIn);
+      },
+      (error) => {
+        console.error('Error sending data', error)
+        this.errorMessage = "Invalid credentials";
       }
     )
   }

@@ -40,16 +40,16 @@
                         <!-- <input class="irp-form-input" type="text" formControlName="emissionScope" id="emissionScope"> -->
                         <br>
                         <select class="em-select" name="scope" id="" formControlName="scope">
-                            <option class="em-option" value="Scope 1">Scope 1</option>
-                            <option class="em-option" value="Scope 2">Scope 2</option>
-                            <option class="em-option" value="Scope 3">Scope 3</option>
+                            <ng-container *ngFor = "let data of scopeList">
+                                <option value={{data.name}}>{{data.name}}</option>
+                            </ng-container>
                         </select>
                     </div>
                         <div class="irp-form-item">
                             <label for="activityDataType">Activity Data Type</label>
                             <br>
                             <select class="em-select" name="dataType" id="" formControlName="dataType">
-                                <optgroup label="Scope 1">
+                                <!-- <optgroup label="Scope 1">
                                     <option class="em-option" value="Fuel Combustion">Fuel Combustion</option>
                                     <option class="em-option" value="Other emissions">Other emissions</option>
                                 </optgroup>
@@ -59,7 +59,10 @@
                                 <optgroup label="Scope 3">
                                     <option class="em-option" value="Water Usage">Water Usage</option>
                                     <option class="em-option" value="Waste Management">Waste Management</option>
-                                </optgroup>
+                                </optgroup> -->
+                                <ng-container *ngFor = "let data of dataTypeList">
+                                    <option value={{data.name}}>{{data.name}}</option>
+                                </ng-container>
                             </select>
                         </div>
 
@@ -67,7 +70,7 @@
                             <label for="activityDataType">Activity Data Description</label>
                             <br>
                             <select class="em-select" name="dataDesc" id="" formControlName="dataDesc">
-                                <optgroup label="Fuel Combustion">
+                                <!-- <optgroup label="Fuel Combustion">
                                     <option class="em-option" value="Volume of petrol consumed by fleet">Volume of petrol consumed by fleet</option>
                                     <option class="em-option" value="Volume of diesel consumed by fleet">Volume of diesel consumed by fleet</option>
                                     <option class="em-option" value="Volume of diesel consumed by machinery/facilities">Volume of diesel consumed by machinery/facilities</option>
@@ -84,7 +87,10 @@
                                 </optgroup>
                                 <optgroup label="Waste management">
                                     <option class="em-option" value="Amount of waste production based on category">Amount of waste production based on category</option>
-                                </optgroup>
+                                </optgroup> -->
+                                <ng-container *ngFor = "let data of dataDescList">
+                                    <option value={{data.name}}>{{data.name}}</option>
+                                </ng-container>
                             </select>
                         </div>
                     

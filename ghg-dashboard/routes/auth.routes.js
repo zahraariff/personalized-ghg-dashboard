@@ -14,6 +14,11 @@ authRoute.post(
   controller.login
 );
 
+authRoute.post(
+  "/api/auth/admin-login",
+  controller.loginAsAdmin
+);
+
 authRoute.get(
   "/api/iot-sensor",
   iotController.getIoTList

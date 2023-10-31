@@ -15,6 +15,10 @@ export class EmissionInputPageComponent {
   emissionData: any = [];
   dataID: any;
   editForm: any;
+  scopeList: any = [];
+  dataTypeList: any = [];
+  dataDescList: any = [];
+
 
   constructor(private formBuilder: FormBuilder, private emissionDataService: EmissionDataService){
     this.addForm = this.formBuilder.group({
@@ -36,12 +40,25 @@ export class EmissionInputPageComponent {
 
   ngOnInit(): void{
     var data, dataList;
+
+    // Retrieve all Emission Data
     data = this.emissionDataService.retrieveEmissionDataList();
     dataList = data.subscribe(res => {this.emissionData = res});
+
+    // Retrieve all Scopes for Add Form
+    data = this.emissionDataService.retrieveEmissionDataScope();
+    dataList = data.subscribe(res => {this.scopeList = res});
+
+    // Retrieve All Data Types for Add Form
+    data = this.emissionDataService.retrieveEmissionDataTypes();
+    dataList = data.subscribe(res => {this.dataTypeList = res});
+
+    // Retrieve All Data Description for Add Form
+    data = this.emissionDataService.retrieveEmissionDataDescription();
+    dataList = data.subscribe(res => {this.dataDescList = res});
   }
 
   emSubmit(item:any){
-    console.log('submit form clicked');
     this.emissionDataService.addEmissionData(item)
     .subscribe(
       (response) => {
