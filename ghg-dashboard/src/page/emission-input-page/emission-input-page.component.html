@@ -10,7 +10,7 @@
         <div class="iot-c-table">  
             <table class="iotc-table">
                 <thead>
-                    <th>Date</th>
+                    <th>Timestamp</th>
                     <th>Scope of Greenhouse Gas Emission</th>
                     <th>Activity Data Type</th>
                     <th>Activity Data Description</th>
@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let data of emissionData; let i = index" style="background-color: white;">
-                        <td></td>
+                        <td>{{data.createdAt}}</td>
                         <td>{{data.scope}}</td>
                         <td>{{data.dataType}}</td>
                         <td>{{data.dataDesc}}</td>

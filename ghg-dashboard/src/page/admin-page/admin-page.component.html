@@ -4,11 +4,11 @@
         <div class="admin-title"> 
             <h1>Manage Emission Data</h1>
         </div>
-        <div class="admin-div"> 
-            <div class="admin-button">
-                <a style="cursor: pointer" (click)="addScopeModal.showModal()">Add New Emission Scope</a>
-            </div>
+        <div class="admin-div">     
             <table class="admin-table">
+                <div class="admin-button">
+                    <a style="cursor: pointer" (click)="addScopeModal.showModal()">Add New Emission Scope</a>
+                </div>
                 <thead>
                     <th>Scope of Greenhouse Gas Emission</th>
                 </thead>
@@ -19,10 +19,13 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="admin-button">
+            <!-- <div class="admin-button">
                 <a style="cursor: pointer" (click)="addActivityDataTypeModal.showModal()">Add New Activity Data Type</a>
-            </div>
-            <table class="admin-table width--">
+            </div> -->
+            <table class="admin-table width--" style="position: relative">
+                <div class="admin-button">
+                    <a style="cursor: pointer" (click)="addActivityDataTypeModal.showModal()">Add New Activity Data Type</a>
+                </div>
                 <thead>
                     <th style="width: 50%;">Activity Data Type</th>
                     <th>Scope</th>
@@ -35,10 +38,10 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="admin-button">
-                <a style="cursor: pointer" (click)="addActivityDataDescModal.showModal()">Add New Activity Data Description</a>
-            </div>
-            <table class="admin-table">
+            <table class="admin-table width--">
+                <div class="admin-button">
+                    <a style="cursor: pointer" (click)="addActivityDataDescModal.showModal()">Add New Activity Data Description</a>
+                </div>
                 <thead>
                     <th>Activity Data Description</th>
                     <th>Activity Data Type</th>

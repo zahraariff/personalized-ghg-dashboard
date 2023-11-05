@@ -16,6 +16,7 @@
 }
 
 .admin-table {
+    position: relative;
     background: white;
     padding: 5px 20px;
     border-radius: 6px;
@@ -72,12 +73,10 @@ img.edit {
 
 .admin-button {
     text-align: right;
-    right: 0;
-    margin-right: 125px;
+    right: 10px;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
     position: absolute;
-    z-index: 2;
-    margin-top: 20px;
+    top: 24px;
 }
 
 .admin-button {
@@ -106,6 +105,11 @@ img.edit {
     &.long-- {
         font-size: 20px;
     }
+}
+
+.admin-div {
+    height: 90vh;
+    overflow: auto;
 }
 
 ::ng-deep {
