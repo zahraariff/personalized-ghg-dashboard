@@ -1,0 +1,109 @@
+[{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1476,
+  "createdAt": {
+    "$date": "2022-01-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1832,
+  "createdAt": {
+    "$date": "2022-02-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1655,
+  "createdAt": {
+    "$date": "2022-03-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1207,
+  "createdAt": {
+    "$date": "2022-04-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1958,
+  "createdAt": {
+    "$date": "2022-05-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1364,
+  "createdAt": {
+    "$date": "2022-06-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1742,
+  "createdAt": {
+    "$date": "2022-07-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1511,
+  "createdAt": {
+    "$date": "2022-08-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1123,
+  "createdAt": {
+    "$date": "2022-09-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1890,
+  "createdAt": {
+    "$date": "2022-10-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1687,
+  "createdAt": {
+    "$date": "2022-11-01T07:32:19.931Z"
+  }
+},
+{
+  "scope": "Scope 3",
+  "dataType": "Waste Management",
+  "dataDesc": "Amount of waste production based on category",
+  "dataValue": 1278,
+  "createdAt": {
+    "$date": "2022-12-01T07:32:19.931Z"
+  }
+}
+]

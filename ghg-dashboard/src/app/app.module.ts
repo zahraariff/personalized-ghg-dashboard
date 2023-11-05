@@ -22,6 +22,7 @@ import { EmissionInputPageComponent } from 'src/page/emission-input-page/emissio
 import { EditProfilePageComponent } from 'src/page/edit-profile-page/edit-profile-page.component';
 import { GraphPageComponent } from 'src/page/graph-page/graph-page.component';
 import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
+import { FilterbarComponent } from 'src/components/filterbar/filterbar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
     EmissionInputPageComponent,
     EditProfilePageComponent,
     GraphPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FilterbarComponent
   ],
   imports: [
     BrowserModule,

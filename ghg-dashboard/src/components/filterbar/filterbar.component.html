@@ -1,0 +1,37 @@
+<div [ngClass]="{ 'show': isChildActive }" class="wrapper">
+    <div class="logo">
+        <a href="/home">
+            <div class="logo-img">
+                <img src="../assets/icons/leaf-icon.png"/>
+                <p class="simple-text">Apply Filters</p>
+            </div>
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <!-- <ul class="nav">
+           <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+                 <a class="nav-link" [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+        </ul> -->
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <p>Scope 1</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <p>Scope 1</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <p>Scope 1</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

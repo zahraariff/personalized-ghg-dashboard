@@ -2,7 +2,9 @@
     <app-sidebar></app-sidebar>
     <div class="graphpage">
         <div class="graphpage-button">
-            <a style="cursor: pointer">Filter Graphs</a>           
+            <!-- <a style="cursor: pointer" (click)="toggleFilterBar()">Filter Graphs</a>           -->
+            <a style="cursor: pointer" (click)="toggleChildClass()">Filter Graphs</a>           
+ 
             
             <!-- <div class="admin-button">
                 <a style="cursor: pointer" (click)="addScopeModal.showModal()">Add New Emission Scope</a>
@@ -77,3 +79,7 @@
 <dialog #graph8>
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
+
+<!-- Filterbar Component -->
+<!-- <app-filterbar *ngIf="isFilterBarSelected"></app-filterbar> -->
+<app-filterbar [isChildActive]="isChildActive" (isChildActiveChange)="isChildActive = $event" ></app-filterbar>
