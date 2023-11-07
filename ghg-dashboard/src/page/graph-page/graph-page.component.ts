@@ -41,6 +41,7 @@ export class GraphPageComponent {
  }
 
  toggleChildClass() {
+  console.log('parent toggle child')
   this.isChildActive = !this.isChildActive;
  }
 
