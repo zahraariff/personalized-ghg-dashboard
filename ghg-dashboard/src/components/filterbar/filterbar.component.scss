@@ -15,6 +15,8 @@
     // width: 275px;
     background: #fff;
     box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+    transition: right 0.3s ease;
+
 
     &.show {
         right: 0;
@@ -30,7 +32,7 @@
     align-items: center;
     justify-content: center;
     img {
-        width: 40px;
+        width: 18px;
         margin: 7px;
     }
 
@@ -59,10 +61,7 @@ a {
     list-style-type: none;
     // padding: 15px 52px;
     border-radius: 5px;
-}
-
-li.nav-item:hover {
-    background: #eeeeed;
+    text-align: left;
 }
 
 .nav {
@@ -74,6 +73,7 @@ li.nav-item:hover {
     height: 100%;
     margin: 0;
     // font-size: 20px;
+    text-align: justify;
 }
 
 .sidebar-wrapper {
@@ -82,12 +82,13 @@ li.nav-item:hover {
     justify-content: center;
     margin-top: 25px;
     display: inline-block;
+    text-align: left;
 }
 
 .sidebar-button {
     position: absolute;
     bottom: 61px;
-    text-align: center;
+    text-align: left;
     left: 0;
     right: 0;
 }
@@ -106,4 +107,8 @@ li.nav-item:hover {
 
 a.nav-link p {
     min-width: 135px;
+}
+
+.modal-close {
+    cursor: pointer;
 }

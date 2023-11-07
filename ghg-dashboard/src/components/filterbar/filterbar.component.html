@@ -1,11 +1,9 @@
 <div [ngClass]="{ 'show': isChildActive }" class="wrapper">
     <div class="logo">
-        <a href="/home">
             <div class="logo-img">
-                <img src="../assets/icons/leaf-icon.png"/>
                 <p class="simple-text">Apply Filters</p>
+                <img (click)="toggleChildClass()" src="../assets/icons/black-close.png" alt="" class="modal-close">
             </div>
-        </a>
     </div>
     <div class="sidebar-wrapper">
         <!-- <ul class="nav">
@@ -16,22 +14,57 @@
                 </a>
             </li>
         </ul> -->
-        <ul class="nav">
-            <li class="nav-item">
+        <p class="simple-text">Filter By: </p>
+        <div class="nav">
+
+            <div class="nav-item">
                 <a class="nav-link">
-                    <p>Scope 1</p>
+                    <p>Scope</p>
                 </a>
-            </li>
-            <li class="nav-item">
+            </div>
+            <div class="filter-innerbox">
+
+                    <div (click)="applyScopesFilter(1)">
+                        <input type="checkbox" id="Scope 1">
+                        <label for="Scope 1">Scope 1</label>
+                    </div>
+                    <div (click)="applyScopesFilter(2)">
+                        <input type="checkbox" id="Scope 2">
+                        <label for="Scope 2">Scope 2</label>
+                    </div>
+                    <div (click)="applyScopesFilter(3)">
+                        <input type="checkbox" id="Scope 3">
+                        <label for="Scope 3">Scope 3</label>
+                    </div>
+            </div>
+
+
+            <div class="nav-item">
                 <a class="nav-link">
-                    <p>Scope 1</p>
+                    <p>Activity Data Type</p>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
-                    <p>Scope 1</p>
-                </a>
-            </li>
-        </ul>
+            </div>
+            <div class="filter-innerbox">
+                <form action="">
+                    <div (click)="applyEmissionTypesFilter('Fuel Combustion')">
+                        <input type="checkbox" id="Fuel Combustion">
+                        <label for="Fuel Combustion">Fuel Combustion</label>
+                    </div>
+                    <div (click)="applyEmissionTypesFilter('Other Emissions')">
+                        <input type="checkbox" id="Other Emissions">
+                        <label for="Other Emissions">Other Emissions</label>
+                    </div>
+                    <div (click)="applyEmissionTypesFilter('Electricity Consumption')">
+                        <input type="checkbox" id="Electricity Consumption">
+                        <label for="Electricity Consumption">Electricity Consumption</label>
+                    </div>
+                    <div (click)="applyEmissionTypesFilter('Water Usage')">
+                        <input type="checkbox" id="Water Usage">
+                        <label for="Water Usage">Water Usage</label>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>

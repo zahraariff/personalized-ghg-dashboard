@@ -2,16 +2,9 @@
     <app-sidebar></app-sidebar>
     <div class="graphpage">
         <div class="graphpage-button">
-            <!-- <a style="cursor: pointer" (click)="toggleFilterBar()">Filter Graphs</a>           -->
             <a style="cursor: pointer" (click)="toggleChildClass()">Filter Graphs</a>           
- 
-            
-            <!-- <div class="admin-button">
-                <a style="cursor: pointer" (click)="addScopeModal.showModal()">Add New Emission Scope</a>
-            </div> -->
-
         </div>
-        <div class="div-iframe" style="position: relative;">        
+        <div class="div-iframe" style="position: relative;">   
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph1.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
@@ -27,19 +20,19 @@
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534cf06-e091-410e-85c2-9f6159a68825&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph4.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
-        <div class="div-iframe" style="position: relative;">        
+        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes.graph5, 'Fuel Combustion')">        
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph5.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
-        <div class="div-iframe" style="position: relative;">        
+        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes.graph6, 'Other Emissions')">        
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph6.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
-        <div class="div-iframe" style="position: relative;">        
+        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes.graph7, 'Electricity Consumption')">        
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph7.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
-        <div class="div-iframe" style="position: relative;">        
+        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes.graph8, 'Water Usage')">        
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph8.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
@@ -49,37 +42,52 @@
 
 <!-- Modal Dialogs -->
 <dialog #graph1>
+    <img (click)="graph1.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph2>
+    <img (click)="graph2.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534a826-765d-4c1f-8cd6-a8b6939efa38&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph3>
+    <img (click)="graph3.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534ce24-c4df-4138-86fe-3f3dcef35f7a&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph4>
+    <img (click)="graph4.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534cf06-e091-410e-85c2-9f6159a68825&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph5>
+    <img (click)="graph5.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph6>
+    <img (click)="graph6.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph7>
+    <img (click)="graph7.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <dialog #graph8>
+    <img (click)="graph8.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
 <!-- Filterbar Component -->
 <!-- <app-filterbar *ngIf="isFilterBarSelected"></app-filterbar> -->
-<app-filterbar [isChildActive]="isChildActive" (isChildActiveChange)="isChildActive = $event" ></app-filterbar>
+<app-filterbar 
+[isChildActive]="isChildActive" 
+(isChildActiveChange)="isChildActive = $event" 
+[selectedScopes]="selectedScopes"
+[selectedEmissionTypes]="selectedEmissionTypes"
+(filterScopes)="filterGraphs($event)"
+(filterEmissionTypes)="filterEmissionDataTypes($event)">
+</app-filterbar>
