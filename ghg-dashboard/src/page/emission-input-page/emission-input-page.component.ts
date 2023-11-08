@@ -17,7 +17,30 @@ export class EmissionInputPageComponent {
   editForm: any;
   scopeList: any = [];
   dataTypeList: any = [];
+  selectedDataTypeList: any = 
+  [
+    {
+      "name": "Fuel Combustion"
+    },
+    {
+      "name": "Other Emissions"
+    },
+  ];
   dataDescList: any = [];
+  selectedScope: string = '';
+  selectedDataType: string = '';
+  selectedDataDescList: any =
+  [
+    {
+      "name": "Volume of petrol consumed by fleet"
+    },
+    {
+      "name": "Volume of diesel consumed by fleet"
+    },
+    {
+      "name": "Volume of diesel consumed by machinery/facilities"
+    }
+  ];
 
 
   constructor(private formBuilder: FormBuilder, private emissionDataService: EmissionDataService){
@@ -56,6 +79,11 @@ export class EmissionInputPageComponent {
     // Retrieve All Data Description for Add Form
     data = this.emissionDataService.retrieveEmissionDataDescription();
     dataList = data.subscribe(res => {this.dataDescList = res});
+  }
+
+  show(){
+    console.log(this.dataTypeList)
+
   }
 
   emSubmit(item:any){
@@ -114,6 +142,50 @@ export class EmissionInputPageComponent {
         window.alert("Error in deleting the Emission Data");
       }
     );
+  }
+
+  selectScope(event: Event) {
+    const scopeControl = this.addForm.get('scope');
+    if (scopeControl) {
+      this.selectedScope = scopeControl.value;
+      this.selectedDataTypeList = this.filterDataTypesBasedOnScope(this.selectedScope);
+    }
+  }
+
+  selectDataType(event: Event) {
+    const dataTypeControl = this.addForm.get('dataType');
+    if(dataTypeControl) {
+      this.selectedDataType = dataTypeControl.value;
+      this.selectedDataDescList = this.filterDataDescBasedOnDataType(this.selectedDataType);
+    }
+  }
+
+  filterDataTypesBasedOnScope(scope: string): any[] {
+    if (scope === 'Scope 1') {
+      return this.dataTypeList.filter((data: { scope: string; }) => data.scope === 'Scope 1');
+    } else if (scope === 'Scope 2') {
+      return this.dataTypeList.filter((data: { scope: string; }) => data.scope === 'Scope 2');
+    } else if (scope === 'Scope 3') {
+      return this.dataTypeList.filter((data: { scope: string; }) => data.scope === 'Scope 3');
+    } else {
+      return this.dataTypeList;     
+    }
+  }
+
+  filterDataDescBasedOnDataType(dataType: string): any[] {
+    if(dataType === 'Fuel Combustion') {
+      return this.dataDescList.filter((data: { type: string; }) => data.type === 'Fuel Combustion');
+    } else if (dataType === 'Other Emissions') {
+      return this.dataDescList.filter((data: { type: string; }) => data.type === 'Other Emissions');
+    } else if (dataType === 'Electricity Consumption') {
+      return this.dataDescList.filter((data: { type: string; }) => data.type === 'Electricity Consumption');
+    } else if (dataType === 'Water Usage') {
+      return this.dataDescList.filter((data: { type: string; }) => data.type === 'Water Usage');
+    } else if (dataType === 'Waste Management') {
+      return this.dataDescList.filter((data: { type: string; }) => data.type === 'Water Management');
+    } else {
+      return this.dataDescList;
+    }
   }
 
 }

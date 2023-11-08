@@ -33,13 +33,13 @@
             <img (click)="myModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
             <div class="rp-container">
                 <div class="rp">
-                <h1 class="rp-header">Add Gas Emission Data</h1>
+                <h1 class="rp-header" (click)="show()">Add Gas Emission Data</h1>
                 <form class="irp-form" [formGroup]="addForm" >
                     <div class="irp-form-item">
                         <label for="emissionScope">Scope of Greenhouse Gas Emission</label>
                         <!-- <input class="irp-form-input" type="text" formControlName="emissionScope" id="emissionScope"> -->
                         <br>
-                        <select class="em-select" name="scope" id="" formControlName="scope">
+                        <select class="em-select" name="scope" id="" formControlName="scope" (change)="selectScope($event)">
                             <ng-container *ngFor = "let data of scopeList">
                                 <option value={{data.name}}>{{data.name}}</option>
                             </ng-container>
@@ -48,7 +48,7 @@
                         <div class="irp-form-item">
                             <label for="activityDataType">Activity Data Type</label>
                             <br>
-                            <select class="em-select" name="dataType" id="" formControlName="dataType">
+                            <select class="em-select" name="dataType" id="" formControlName="dataType" (change)="selectDataType($event)">
                                 <!-- <optgroup label="Scope 1">
                                     <option class="em-option" value="Fuel Combustion">Fuel Combustion</option>
                                     <option class="em-option" value="Other emissions">Other emissions</option>
@@ -60,7 +60,7 @@
                                     <option class="em-option" value="Water Usage">Water Usage</option>
                                     <option class="em-option" value="Waste Management">Waste Management</option>
                                 </optgroup> -->
-                                <ng-container *ngFor = "let data of dataTypeList">
+                                <ng-container *ngFor = "let data of selectedDataTypeList">
                                     <option value={{data.name}}>{{data.name}}</option>
                                 </ng-container>
                             </select>
@@ -88,7 +88,7 @@
                                 <optgroup label="Waste management">
                                     <option class="em-option" value="Amount of waste production based on category">Amount of waste production based on category</option>
                                 </optgroup> -->
-                                <ng-container *ngFor = "let data of dataDescList">
+                                <ng-container *ngFor = "let data of selectedDataDescList">
                                     <option value={{data.name}}>{{data.name}}</option>
                                 </ng-container>
                             </select>
