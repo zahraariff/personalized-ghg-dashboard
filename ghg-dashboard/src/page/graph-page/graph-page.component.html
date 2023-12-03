@@ -2,9 +2,15 @@
     <app-sidebar></app-sidebar>
     <div class="graphpage">
         <div class="graphpage-button">
-            <a style="cursor: pointer" (click)="toggleChildClass()">Filter Graphs</a>           
+            <a style="cursor: pointer" (click)="toggleChildClass()">Filter Graphs</a> 
+            <!-- <a (click)="generateReport()">Generate Report</a>           -->
         </div>
-        <div class="div-iframe" style="position: relative;">   
+
+        <!-- <div id="chart" style="width: 1000px;"></div> -->
+        <!-- <div id="dashboard" style="width: 1000px; height: 2000px;"></div> -->
+
+        <!-- <iframe style="background: #F1F5F4;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);width: 100vw;height: 100vh;"  src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/dashboards?id=64f89b4f-9881-4cb2-88af-4e17941a7755&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"></iframe> --> 
+        <div class="div-iframe" style="position: relative;" id="this-iframe">   
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph1.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
@@ -35,7 +41,7 @@
         <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes['graph8'], 'Water Usage')">        
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph8.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
-        </div>
+        </div> 
     </div>
 </div>
 <!-- width="640" height="480" -->

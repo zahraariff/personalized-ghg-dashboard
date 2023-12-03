@@ -3,3 +3,104 @@
     flex-direction: row;
     background-color: #EEEEEE;
 }
+
+.report-wrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: #EEEEEE;
+}
+
+.report-container {
+    margin-left: 20px;
+}
+
+.rc-header {
+    font-weight: 500;
+}
+
+.irp-form-item {
+    margin: 15px 0px;
+    position: relative;
+    display: inline-grid;
+}
+
+.form-label {
+    line-height: 30px;
+    font-size: 18px;
+}
+
+form .irp-form-item input {
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    padding: 10px;
+}
+
+.form-select {
+    height: 40px;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.rp-button{
+    padding-top: 10px;
+}
+
+.rp-button button {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background: #3CB043;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.time-label {
+    padding-top: 3px;
+}
+
+.date-picker {
+    margin-bottom: 10px;
+}
+
+input.form-checkbox {
+    margin-right: 20px;
+}
+
+.header {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.checkbox-div {
+    margin-bottom: 10px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;   
+    font-size: 16px; 
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; 
+}

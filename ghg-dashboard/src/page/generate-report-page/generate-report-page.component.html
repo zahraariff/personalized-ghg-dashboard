@@ -1,33 +1,51 @@
 <div class="wrapper">
     <app-sidebar></app-sidebar>
-    <h1> Generate A New Report</h1>
-    <form action="" class="irp-form">
+    <div class="report-wrapper">
+        <div class="report-container">
+            <h1 class="rc-header"> Generate A New Report</h1>
+            <form action="" class="irp-form" [formGroup]="reportForm">
+                <div class="irp-form-item">
+                    <label for="" class="form-label">Name of the Report</label>
+                    <input type="text" formControlName="name">
+                </div>
+                <div class="irp-form-item">
+                <div  class="form-label" style="margin-bottom: 10px;">Choose Time Period</div>
+                    <label for="" class="time-label">From</label>           
+                    <input type="date" formControlName="minDate">
+                    <label for="">To</label>           
+                    <input type="date" formControlName="maxDate">
+                </div>
+                <div class="irp-form-item">
+                    <div class="form-label">Choose Scope To Be Included</div>
+
+                    <ng-container formGroupName="scopes">
+                        <div *ngFor = "let data of scopeList; let i = index">
+                            <input style="width: initial;" class="form-checkbox" type="checkbox" value="{{data.name}}" formControlName="{{data.formcontrol}}">
+                            <label for="">{{data.name}}</label>
+                        </div>
+                    </ng-container>
+
+                    <!-- ALERT: If face with a bug that Angular doesn't populate all the label, it is due to formControlName that aren't properly populated. -->
+                </div>
+            </form>
+            <div class="rp-button">
+                <button type="submit" (click)="submitReportForm(reportForm.value)">Generate report</button>
+            </div>
+        </div> 
+        <!-- <div class="report-container second--">
         <div class="irp-form-item">
-            <label for="">Name of the Report</label>
-            <input type="text">
-        </div>
-        <div class="irp-form-item">
-           <label for="">Choose Time Period</label>
-           <select name="" id="">
-                <option value="">Yearly</option>
-                <option value="">Monthly</option>
-           </select>
-        </div>
-        <div class="irp-form-item">
-            <label for="">Choose Scope To Be Included</label>
-            <select name="" id="">
-                <option value="">Scope 1</option>
-                <option value="">Scope 2</option>
-                <option value="">Scope 3</option>
-           </select>
-         </div>
-         <div class="irp-form-item">
-            <label for="">Choose Emission Data Type To Be Included</label>
-            <select name="" id="">
-                <option value="">Scope 1</option>
-                <option value="">Scope 2</option>
-                <option value="">Scope 3</option>
-           </select>
-        </div>
-    </form>
+             ALERT: If face with a bug that Angular doesn't populate all the label, it is due to formControlName that aren't properly populated. -->
+
+            <!-- <div  class="form-label">Choose Emission Data Type To Be Included</div>
+            <ng-container formGroupName="emissionDataType">
+                <div *ngFor = "let type of dataTypeList; let i = index">
+                    <input style="width: initial;" class="form-checkbox" type="checkbox" value="{{type.name}}" formControlName="{{type.formcontrol}}">
+                    <label for="">{{type.name}}</label>
+                </div>
+            </ng-container>
+        </div> -->
+        </div> 
+    <!-- </div> -->
 </div>
+
+

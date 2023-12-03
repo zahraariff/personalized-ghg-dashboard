@@ -81,11 +81,6 @@ export class EmissionInputPageComponent {
     dataList = data.subscribe(res => {this.dataDescList = res});
   }
 
-  show(){
-    console.log(this.dataTypeList)
-
-  }
-
   emSubmit(item:any){
     this.emissionDataService.addEmissionData(item)
     .subscribe(

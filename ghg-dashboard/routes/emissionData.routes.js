@@ -229,4 +229,221 @@ emissionDataRoute.delete("/delete-activity-data-desc/:id", async (req, res) => {
     }
 });
 
+// [CHARTS]: View Emission Data Based On The Specified Months In A Specified Year
+emissionDataRoute.get("/get-emission-data-specified-months/:year/:startMonth/:endMonth", async (req, res) => {
+
+    // Get the specified year from URL and parse the String to an integer
+    const specifiedYear = parseInt(req.params.year)
+
+    //Get the start and end months from the URL
+    const startMonth = parseInt(req.params.startMonth)
+    const endMonth = parseInt(req.params.endMonth)
+
+     // Validate months (you may add additional validation if needed)
+     if (startMonth < 1 || startMonth > 12 || endMonth < 1 || endMonth > 12) {
+        return res.status(400).send("Invalid month specified");
+    }
+
+    // Create the minDate and maxDate based on the specified year
+    const minDate = new Date(`${specifiedYear}-${startMonth.toString().padStart(2, '0')}-01T00:00:00Z`);
+    const maxDate = new Date(`${specifiedYear}-${(endMonth + 1).toString().padStart(2, '0')}-01T00:00:00Z`);
+
+
+    try {
+        const data = await emissionDataModel.aggregate(
+            [
+                { $match:
+                    {
+                        createdAt: {
+                          $gte: minDate,
+                          $lt: maxDate,
+                        },
+                    }
+                }
+            ]
+        )
+        res.send(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// [POST METHOD] [CHARTS]: View Emission Data Based On The Specified Months In A Specified Year
+// Ensure that req.body scopes value are passed as boolean not string
+emissionDataRoute.post("/query-report-data", async (req, res) => {
+
+    try {
+    // Get parameters from request 
+        const {
+            emissionDataType,
+            maxDate,
+            minDate,
+            name,
+            scopes,
+        } = req.body;
+
+        console.log(req.body)
+
+        if(!name || !maxDate || !minDate){
+            return res.status(400).send("Invalid form data");
+        }
+
+        // Extracting keys with value true from scopes
+        const trueScopes = Object.keys(scopes).filter(key => scopes[key] === true);
+        const scopeArr = [];
+
+        console.log(trueScopes)
+
+        if(trueScopes.includes("scope1")){
+            scopeArr.push("Scope 1");
+        } 
+        
+        if (trueScopes.includes("scope2")) {
+            scopeArr.push("Scope 2");
+        }
+
+        if (trueScopes.includes("scope3")) {
+            scopeArr.push("Scope 3");
+        }
+
+        console.log(scopeArr)
+
+        // Use the values to create a MongoDB Query
+        const data = await emissionDataModel.aggregate([
+            { $match:
+                {
+                    createdAt: {
+                        $gte: new Date(`${minDate}T00:00:00.000Z`),
+                        $lt: new Date(`${maxDate}T00:00:00.000Z`),
+                    },
+                    $or: scopeArr.map(scope => ({ scope: scope })),
+                }
+            }
+        ])
+
+        // Send Back data to Client
+        res.json(data);
+    } catch (error) {
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// [CHARTS]: View Emission Data Based On The Specified Year With Scope
+emissionDataRoute.get("/get-emission-data-specified-year/:year/:scope", async (req, res) => {
+
+    // Get the specified year from URL and parse the String to an integer
+    const specifiedYear = parseInt(req.params.year)
+
+    // Get scope from URL: scope1, scope2, scope3
+    const scope = req.params.scope
+
+    // Create the minDate and maxDate based on the specified year
+    const minDate = new Date(`${specifiedYear}-01-01T00:00:00Z`);
+    const maxDate = new Date(`${specifiedYear + 1}-01-01T00:00:00Z`);
+
+    try {
+        const data = await emissionDataModel.aggregate(
+            [
+                { $match:
+                    {
+                        createdAt: {
+                          $gte: minDate,
+                          $lt: maxDate,
+                        },
+                        scope: {
+                            scope
+                        }
+                    }
+                }
+            ]
+        )
+        res.send(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// [CHARTS]: View Emission Data Based On The Specified Months In A Specified Year With Scope
+emissionDataRoute.get("/get-emission-data-specified-months/:year/:startMonth/:endMonth/:scope", async (req, res) => {
+
+    // Get the specified year from URL and parse the String to an integer
+    const specifiedYear = parseInt(req.params.year)
+
+    //Get the start and end months from the URL
+    const startMonth = parseInt(req.params.startMonth)
+    const endMonth = parseInt(req.params.endMonth)
+
+    // Get scope from URL: scope1, scope2, scope3
+    const scope = req.params.scope
+
+     // Validate months (you may add additional validation if needed)
+     if (startMonth < 1 || startMonth > 12 || endMonth < 1 || endMonth > 12) {
+        return res.status(400).send("Invalid month specified");
+    }
+
+    // Create the minDate and maxDate based on the specified year
+    const minDate = new Date(`${specifiedYear}-${startMonth.toString().padStart(2, '0')}-01T00:00:00Z`);
+    const maxDate = new Date(`${specifiedYear}-${(endMonth + 1).toString().padStart(2, '0')}-01T00:00:00Z`);
+
+
+    try {
+        const data = await emissionDataModel.aggregate(
+            [
+                { $match:
+                    {
+                        createdAt: {
+                          $gte: minDate,
+                          $lt: maxDate,
+                        },
+                        scope: {
+                            scope
+                        }
+                    }
+                }
+            ]
+        )
+        res.send(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// [CHARTS]: View Emission Data Based On The Specified Year With Emission Data Type
+emissionDataRoute.get("/get-emission-data-specified-year-emission/:year/:emissiontype", async (req, res) => {
+
+    // Get the specified year from URL and parse the String to an integer
+    const specifiedYear = parseInt(req.params.year)
+
+    // Get emission data type 
+    const type = req.params.emissiontype
+
+    // Create the minDate and maxDate based on the specified year
+    const minDate = new Date(`${specifiedYear}-01-01T00:00:00Z`);
+    const maxDate = new Date(`${specifiedYear + 1}-01-01T00:00:00Z`);
+
+    try {
+        const data = await emissionDataModel.aggregate(
+            [
+                { $match:
+                    {
+                        dataType: type,
+                        createdAt: {
+                          $gte: minDate,
+                          $lt: maxDate,
+                        }
+                    }
+                }
+            ]
+        )
+        res.send(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
 module.exports = emissionDataRoute;

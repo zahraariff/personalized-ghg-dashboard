@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FilterbarComponent } from 'src/components/filterbar/filterbar.component';
+import { PdfGeneratorService } from 'src/services/pdf-generator.service';
+// import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
+
 
 @Component({
   selector: 'app-graph-page',
@@ -26,9 +29,57 @@ export class GraphPageComponent {
     graph8: 3
   };
 
-  constructor() {
+//   sdk = new ChartsEmbedSDK({
+//     baseUrl: "https://charts.mongodb.com/charts-project-0-mcbzq", // ~REPLACE~ with the Base URL from your Embed Chart dialog.
+//   });
+  
+//   chart = this.sdk.createChart({
+//     chartId: "6534732d-1331-48de-8bcb-5d83447f0831", // ~REPLACE~ with the Chart ID from your Embed Chart dialog.
+//     height: "700px",
+//     // Additional options go here
+//   });
+
+//   dashboard = this.sdk.createDashboard({
+//     dashboardId: "64f89b4f-9881-4cb2-88af-4e17941a7755", // ~REPLACE~ with the Dashboard ID from your Embed Dashboard dialog.
+//     height: "700px",
+//     widthMode: "scale",
+//     // heightMode: "fixed"
+//     // Additional options go here
+//  });
+
+  constructor(private pdfGeneratorService: PdfGeneratorService) {
     this.filterbarComponent = new FilterbarComponent();
   }
+
+  // ngOnInit(): void {
+  //   this.renderChart();   
+  //   this.renderDashboard();
+  //  }
+
+
+//  renderChart(){
+//   const chartElement = document.getElementById("chart");
+//   console.log("chartElement:", chartElement);
+
+//   if (chartElement) {
+//     this.chart.render(chartElement);
+//   } else {
+//     console.error("Chart element not found");
+//   }
+
+//  }
+
+//  renderDashboard(){
+//   const dashboardElement = document.getElementById("dashboard");
+//   // console.log("chartElement:", chartElement);
+
+//   if (dashboardElement) {
+//     this.dashboard.render(dashboardElement);
+//   } else {
+//     console.error("Chart element not found");
+//   }
+
+//  }
 
  isFilterBarSelected: boolean = false;
 
@@ -64,5 +115,21 @@ shouldDisplayGraph(scope: number, emissionType: string): boolean {
   return scopeMatches && typeMatches;
 }
 
+async generateReport(){
+  // Generate Pdf that contains all the scope specified
+  
+  // const pdfBytes = await this.pdfGeneratorService.generatePdfWithIframe();
+  const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart();
+
+
+  // Create a Blob from the PDF data
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+  // Create a download link and trigger a click to download the PDF
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.download = 'generated-pdf.pdf';
+  link.click();
+}
  
 }

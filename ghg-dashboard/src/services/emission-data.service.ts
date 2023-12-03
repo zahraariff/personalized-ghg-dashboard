@@ -16,6 +16,9 @@ const delDataTypeUrl = 'http://localhost:3000/delete-activity-data-type'
 const delScopeUrl = 'http://localhost:3000/delete-scope'
 const delDataDescUrl = 'http://localhost:3000/delete-activity-data-desc'
 
+// [CHARTS]
+const generateReportData = 'http://localhost:3000/query-report-data'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -82,5 +85,10 @@ export class EmissionDataService {
 
   deleteDataDesc(item: any){
     return this.http.delete(`${delDataDescUrl}/${item}`);
+  }
+
+  // [CHARTS]: Submit Generate Report Data
+  submitReportData(item: any): Observable<any>{
+    return this.http.post(generateReportData, item)
   }
 }

@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/iot-sensor', title: 'IoT Sensor' },
     { path: '/emissions', title: 'Emission Data' },
     { path: '/graphs', title: 'Graph' },
-    { path: '/dashboard', title: 'Report' },
+    { path: '/generate-report', title: 'Report' },
     { path: '/edit-profile', title: 'User Profile' },
 
 ];
