@@ -75,7 +75,7 @@ export class PdfGeneratorService {
     return buffer;
   }
 
-  async generatePdfWithChart(): Promise<Uint8Array> {
+  async generatePdfWithChart(title: any): Promise<Uint8Array> {
     // Create a new PDF document
     const pdfDoc = await PDFDocument.create();
   
@@ -83,16 +83,19 @@ export class PdfGeneratorService {
     const page = pdfDoc.addPage();
   
     // Use html2canvas to capture the content of the div with the ID "chart" as an image
-    const chartImage = await this.captureDivImage('chart');
+    const chartImage = await this.captureDivImage('chartDiv');
   
     // Embed the chart image in the PDF
     const embeddedImage = await pdfDoc.embedPng(chartImage);
+
+    // Add the title of the report to the PDF page
+    const { width, height } = page.getSize();
+    page.drawText(title, {x: 50, y: height - 200});
   
     // Add the image to the PDF page
-    const { width, height } = page.getSize();
     page.drawImage(embeddedImage, {
       x: 50,
-      y: height - 200,
+      y: height - 300,
       width: 200,
       height: 100,
     });

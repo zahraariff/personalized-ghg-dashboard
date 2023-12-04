@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { subscribeOn } from 'rxjs';
+// import { subscribeOn } from 'rxjs';
 import { EmissionDataService } from 'src/services/emission-data.service';
 import { PdfGeneratorService } from 'src/services/pdf-generator.service';
 import { ReportDataSharingService } from 'src/services/report-data-sharing.service';

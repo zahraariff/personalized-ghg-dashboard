@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js'
 import { ReportDataSharingService } from 'src/services/report-data-sharing.service';
+import { PdfGeneratorService } from 'src/services/pdf-generator.service';
 
 @Component({
   selector: 'app-report-page',
@@ -16,7 +17,7 @@ export class ReportPageComponent {
   @ViewChild('canvas', { static: true }) canvas!: ElementRef;
   reportName: any;
 
-  constructor( private service: ReportDataSharingService, private cdr: ChangeDetectorRef){
+  constructor( private service: ReportDataSharingService, private cdr: ChangeDetectorRef, private pdfGeneratorService: PdfGeneratorService){
     Chart.register(...registerables);
   }
 
@@ -100,7 +101,28 @@ export class ReportPageComponent {
         }
       },
     });
+  }
 
-}
+  // Generate Pdf Using a Service
+  async generateReport(){
+
+    console.log('generate report function called')
+
+    // Get the title of the report
+    const title = this.service.getReportName();
+    if(title) {
+      try {
+        // Call the generate pdf with chart from service
+        const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart(title);
+
+        // Display the pdf in a new window
+        const blob = new Blob([pdfBytes], { type: 'application/pdf'});
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank')
+      } catch (error) {
+        console.error('Error generating PDF: ', error)
+      }
+    }
+  }
 
 }

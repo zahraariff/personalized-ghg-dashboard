@@ -119,7 +119,7 @@ async generateReport(){
   // Generate Pdf that contains all the scope specified
   
   // const pdfBytes = await this.pdfGeneratorService.generatePdfWithIframe();
-  const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart();
+  const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart('title');
 
 
   // Create a Blob from the PDF data
