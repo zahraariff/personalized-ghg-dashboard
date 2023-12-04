@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { subscribeOn } from 'rxjs';
 import { EmissionDataService } from 'src/services/emission-data.service';
 import { PdfGeneratorService } from 'src/services/pdf-generator.service';
+import { ReportDataSharingService } from 'src/services/report-data-sharing.service';
 
 @Component({
   selector: 'app-generate-report-page',
@@ -20,7 +22,11 @@ export class GenerateReportPageComponent {
   selectedDataType: string = '';
   responseData: any; 
 
-  constructor(private formBuilder: FormBuilder, private emissionDataService: EmissionDataService, private pdfGeneratorService: PdfGeneratorService){
+  constructor(private formBuilder: FormBuilder, 
+    private emissionDataService: EmissionDataService, 
+    private pdfGeneratorService: PdfGeneratorService,
+    private router: Router,
+    private reportDataSharingService: ReportDataSharingService){
     this.reportForm = this.formBuilder.group({
       name: [],
       minDate: [],
@@ -77,19 +83,26 @@ export class GenerateReportPageComponent {
   }
 
   submitReportForm(item: any){
-    // console.log(item)
+
+    // Keep Report Nama in a shared private variable
+    // this.reportDataSharingService.setReportData(item.name);
+    // console.log('reportName', this.reportDataSharingService.getReportData());
 
     // Send Data to function that generates a report
     this.emissionDataService.submitReportData(item).subscribe(
       (response: any) => {
-        this.responseData = response; 
+        this.responseData = response; // Might not need
         window.alert("You have successfully generated a report!");
+
+        // Keep data in data sharing service to be used by next component
+        this.reportDataSharingService.setReportData(response, item.name);
+        this.router.navigate(['/generate-report/report']);
+
       },
       (error: any) => {
         console.error('An error occured: ', error);
       }
-    );
-
+    )
 
 
   }

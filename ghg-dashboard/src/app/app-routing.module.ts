@@ -32,7 +32,8 @@ const routes: Routes = [
   {path: 'admin', component: AdminPageComponent, canActivate: [authGuard]},
   {path: 'generate-graph', component: AdminPageComponent, canActivate: [authGuard]},
   {path: 'generate-report', component: GenerateReportPageComponent, canActivate: [authGuard]},
-  {path: 'reports', component: ReportPageComponent, canActivate: [authGuard]}
+  {path: 'generate-report/report', component: ReportPageComponent, canActivate: [authGuard]},
+  
 ];
 
 @NgModule({

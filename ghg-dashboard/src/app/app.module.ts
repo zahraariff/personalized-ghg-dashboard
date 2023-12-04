@@ -24,6 +24,7 @@ import { GraphPageComponent } from 'src/page/graph-page/graph-page.component';
 import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
 import { FilterbarComponent } from 'src/components/filterbar/filterbar.component';
 import { GenerateReportPageComponent } from 'src/page/generate-report-page/generate-report-page.component';
+import { ReportPageComponent } from 'src/page/report-page/report-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { GenerateReportPageComponent } from 'src/page/generate-report-page/gener
     GraphPageComponent,
     AdminPageComponent,
     FilterbarComponent,
-    GenerateReportPageComponent
+    GenerateReportPageComponent,
+    ReportPageComponent
   ],
   imports: [
     BrowserModule,
