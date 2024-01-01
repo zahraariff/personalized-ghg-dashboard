@@ -121,7 +121,6 @@ export class EmissionInputPageComponent {
    // Get Id of Emission Data
    editEmissionData(item: any){
     this.dataID = item;
-    console.log(this.dataID)
   }
 
   deleteEmissionData(){

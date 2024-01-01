@@ -7,6 +7,7 @@ let emissionDataModel = require ('../model/emissionData.model');
 let scopeModel = require('../model/scope.model');
 let dataTypeModel = require('../model/dataType.model');
 let dataDescModel = require('../model/dataDesc.model');
+let userModel = require('../model/user.model');
 
 // Add New Emission Data
 emissionDataRoute.post("/addEmissionData", async (req,res) => {
@@ -31,7 +32,7 @@ emissionDataRoute.get("/view-emission-data", (req, res) => {
     }
 })
 
-//Edit Emission Data
+// Edit Emission Data
 emissionDataRoute.patch("/edit-emission-data/:id", async (req, res) => {
     try {
         const { id } = req.params;
@@ -57,12 +58,8 @@ emissionDataRoute.patch("/edit-emission-data/:id", async (req, res) => {
 });
 
 emissionDataRoute.delete("/delete-emission-data/:id", async (req, res) => {
-    console.log('delete emission data')
     try {
-      // console.log(id, 'this is sensor id to deleted')
-      console.log(req.params)
       const { id } = req.params;
-      console.log(id)
       
       // Find the emission data document by ID
       const data = await emissionDataModel.findById(id);
@@ -444,6 +441,63 @@ emissionDataRoute.get("/get-emission-data-specified-year-emission/:year/:emissio
         res.status(500).send("Internal Server Error");
     }
 });
+
+// [ADMIN]: Get all users in the system
+emissionDataRoute.get("/get-all-users", async (req, res) => {
+    try {
+        userModel.find().then((data) => {
+            res.send(data);
+        });
+
+    } catch (error) {
+        res.send(data);
+    }
+})
+
+// [ADMIN]: Edit user details
+emissionDataRoute.patch("/edit-user/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateFields = req.body;
+
+        // Find the document by ID
+        const data = await userModel.findById(id);
+
+        if (!data) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        // Update te fields provided in the request body
+        Object.assign(data, updateFields);
+
+        // Save the updated document
+        await data.save();
+        return res.status(200).json({ message: 'User details updated successfully'})
+
+    } catch (error) {
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
+// [ADMIN]: Delete user from system
+emissionDataRoute.delete("/delete-user/:id", async (req, res) => {
+    try {
+
+        const { id } = req.params;
+        const data = await userModel.findById(id);
+
+        if (!data) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        await data.deleteOne();
+        return res.status(200).json({ message: 'User deleted successfully!'})
+    } catch (error) {
+        return res.status(500).json({ message: 'Error'})
+        
+    }
+})
+
 
 
 module.exports = emissionDataRoute;

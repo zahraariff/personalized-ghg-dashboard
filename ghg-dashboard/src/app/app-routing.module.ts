@@ -15,6 +15,7 @@ import { GraphPageComponent } from 'src/page/graph-page/graph-page.component';
 import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
 import { GenerateReportPageComponent } from 'src/page/generate-report-page/generate-report-page.component';
 import { ReportPageComponent } from 'src/page/report-page/report-page.component';
+import { ManageAccountsPageComponent } from 'src/page/manage-accounts-page/manage-accounts-page.component';
 
 const routes: Routes = [
   {path: 'register-iot-sensor', component: IotRegistrationPageComponent},
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'generate-graph', component: AdminPageComponent, canActivate: [authGuard]},
   {path: 'generate-report', component: GenerateReportPageComponent, canActivate: [authGuard]},
   {path: 'generate-report/report', component: ReportPageComponent, canActivate: [authGuard]},
-  
+  {path: 'manage-system-account', component: ManageAccountsPageComponent, canActivate: [authGuard]}
 ];
 
 @NgModule({

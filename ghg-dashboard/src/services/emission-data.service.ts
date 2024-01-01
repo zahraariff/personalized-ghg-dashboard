@@ -35,7 +35,6 @@ export class EmissionDataService {
   }
 
   editEmissionData(data: any, item: any): Observable<any>{
-    console.log('edit service called')
     return this.http.patch(`${editUrl}/${item}`, data);
   }
 

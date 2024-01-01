@@ -1,7 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../model");
 const User = db.user;
-const Role = db.role;
+// const Role = db.role; unused 
 const cookieParser = require("cookie-parser");
 const express = require('express');
 const app = express();
@@ -19,7 +19,6 @@ exports.register = (req,res) => {
         ]
     }).then((existingUser) => {
         if (existingUser) {
-            console.log('header 1 sent')
             console.error('This email or username has already been registered.')
             return res.status(400).json({ error: 'This email or username has already been registered' });
         } else {
@@ -32,11 +31,9 @@ exports.register = (req,res) => {
             
             newUser.save()
                 .then(() => {
-                    console.log('header 2 sent')
                     return res.status(201).json(newUser);
                 })
                 .catch((error) => {
-                    console.log('header 3 sent')
                     console.error('Failed to save user:', error);
                     this.errorMessage = error;
                 });
@@ -77,7 +74,6 @@ exports.login = async (req, res) => {
 }
 
 exports.loginAsAdmin = async (req, res) => {
-    console.log(req.body);
 
     const { username, email, password } = req.body;
 
@@ -88,11 +84,11 @@ exports.loginAsAdmin = async (req, res) => {
         user = await User.findOne({ email });
     }
 
-    // Check if the user exists and the password is correct
+    // Check if the user exists, the password is correct and the user has an admin role
     if (!user || !bcrypt.compareSync(password, user.password) || user.roles.includes('user')) {
         return res.status(401).json({ error: 'Invalid credentials' });
     } else {
-        console.log("Logged In");
+        console.log("Logged in as admin");
 
         // Set user role as cookies 
         console.log(user.roles)

@@ -48,6 +48,7 @@ export class SidebarComponent implements OnInit {
     
     if (role === 'admin') {
       this.menuItems.push({ path: '/admin', title: 'Admin'});
+      this.menuItems.push({ path: '/manage-system-account', title: 'Manage Account'});
     }
   }
  

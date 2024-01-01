@@ -1,62 +1,35 @@
-<!-- <div class="wrapper">
+<div class="wrapper">
     <app-sidebar></app-sidebar>
-    <form class="irp-form" [formGroup]="editUserProfileForm" (ngSubmit)="submitUserData(editUserProfileForm.value)">
-        <div class="irp-form-item">
-            <label for="username">Email</label>
-            <input class="irp-form-input short--" type="text" formControlName="usernameEmail" id="username">
-        </div>
-        <div class="irp-form-item">
-            <label for="username">Username</label>
-            <input class="irp-form-input short--" type="text" formControlName="usernameEmail" id="username">
-        </div>
-        <div class="irp-form-item">
-            <label for="password">Password</label>
-            <input class="irp-form-input" type="password" formControlName="password" id="password">
-        </div>
-        <div class="rp-button">
-            <button type="submit">Save Edits</button>
-        </div>
-    </form>
-</div> -->
+    <div class="epp">
+        <div class="epp-header"> User Details</div>
+        <form class="irp-form" [formGroup]="editUserProfileForm" (ngSubmit)="submitUserData(editUserProfileForm.value)">
+            <div class="irp-form-item">
+                <label for="username">Email</label>
+                <input class="irp-form-input short--" type="text" formControlName="email" id="email" placeholder="zaraa@um.edu.my">
+                <!-- Get email from BE -->
+            </div>
+            <div class="irp-form-item">
+                <label for="username">Username</label>
+                <input class="irp-form-input short--" type="text" formControlName="username" id="username" placeholder="zaraa">
+                <!-- Get username from BE -->
+            </div>
+            <div class="irp-form-item">
+                <label for="password">Password</label>
+                <input class="irp-form-input" type="password" formControlName="password" id="password" placeholder="password">
+            </div>
+            <div class="irp-form-item">
+                <label for="username">Organisation name</label>
+                <input class="irp-form-input short--" type="text" formControlName="orgName" id="orgName" placeholder="University of Malaya" readonly>
+            </div>
+            <div class="rp-button">
+                <button type="submit" class="save-button">Save Edits</button>
+            </div>
+            <!-- To add First name and last name for user details -->
+        </form>
 
-<!-- <div class="wrapper">
-    <app-sidebar></app-sidebar>
-     <div class="iot-container">
-        <div class="iot-c-title">
-            <h1>Registered IoT Sensors</h1>
-        </div>
-        
-             <table class="iotc-table">
-                <thead>
-                    <th>ID</th>
-                    <th>Device Name</th>
-                    <th>Device Model</th>
-                    <th>Description</th>
-                    <th>Building</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let iotSensor of iotSensors; let i = index" style="background-color: white;">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{iotSensor.deviceName}}</td>
-                        <td>{{iotSensor.deviceModel}}</td>
-                        <td>{{iotSensor.desc}}</td>
-                        <td>{{iotSensor.building}}</td>
-                        <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
-                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td>
-                    </tr>
-                     <tr *ngFor="let t of temp;"style="background-color: white;">
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                         <td (click)="myModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/edit-button.svg" alt="" class="edit"></td>
-                        <td (click)="deleteModal.showModal()"><img (click)="editIot(iotSensor._id)" src="../assets/icons/trash.png" alt="" class="edit"></td> -->
-                    <!-- </tr>  -->
-                <!-- </tbody>
-            </table> --> 
-            <!-- <button (click)="submitData(this.formValue)">TEst api</button> -->
-        
+    </div>
+</div>
+
 
 
  

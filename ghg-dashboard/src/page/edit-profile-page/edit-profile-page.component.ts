@@ -13,7 +13,8 @@ export class EditProfilePageComponent {
     this.editUserProfileForm = this.formBuilder.group({
       username: [''],
       email: [''],
-      password: ['']
+      password: [''],
+      orgName: ['']
     });
   }
 
