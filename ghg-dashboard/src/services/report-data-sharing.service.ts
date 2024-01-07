@@ -13,6 +13,7 @@ export class ReportDataSharingService {
   setReportData(data: any, name: any) {
     this.reportData = data;
     this.reportName = name;
+    console.log(data);
   }
 
   getReportData(): any{

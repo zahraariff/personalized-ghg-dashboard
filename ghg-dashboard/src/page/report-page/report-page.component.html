@@ -1,18 +1,37 @@
 <div class="wrapper">
     <app-sidebar></app-sidebar>
-    <div>
-        <div class="yourreports">
-            <h1>Your reports</h1>
+    <div class="report">
+        <div class="report-scroll">
+            <div class="yourreports">
+                <h1>Your reports</h1>
+            </div>
+            <div class="report-wrapper" id="report-wrapper">
+                <div width="400" height="400" id="chartDiv">
+                    <canvas #canvas id="chart"></canvas>
+                </div>
+                <div class="report-table" id="report-table">
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Scope</th>
+                            <th>Emission Data Type</th>
+                            <th>Emission Data Description</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr *ngFor="let data of this.reportData">
+                            <!-- <p>{{reportData}}</p> -->
+                            <td>{{ data.createdAt | date:'dd-MM-yyyy'}}</td>
+                            <td>{{ data.scope }}</td>
+                            <td>{{ data.dataType }}</td>
+                            <td>{{ data.dataDesc }}</td>
+                            <td>{{ data.dataValue }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button (click)="generateReport()" class="report-button">Download This Report</button>
         </div>
-        <div class="generatereport">
-            <h1>Generate a new report</h1>
-        </div>
-        <div width="400" height="400" id="chartDiv">
-            <canvas #canvas id="chart"></canvas>
-        </div>
-        <button (click)="generateReport()">Download This Report</button>
     </div>
-
 </div> 
 
 

@@ -24,9 +24,7 @@ export class ReportPageComponent {
   ngOnInit() {
     // get response from data 
     this.reportData = this.service.getReportData();
-    console.log('data', this.reportData);
     this.reportName = this.service.getReportName();
-    console.log('name', this.reportName)
 
     // Create a map to store aggregated data by month
     const aggregatedDataByMonth = new Map();
@@ -106,14 +104,14 @@ export class ReportPageComponent {
   // Generate Pdf Using a Service
   async generateReport(){
 
-    console.log('generate report function called')
-
     // Get the title of the report
     const title = this.service.getReportName();
     if(title) {
       try {
         // Call the generate pdf with chart from service
-        const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart(title);
+        // const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart(title);
+        const pdfBytes = await this.pdfGeneratorService.generatePdfWithChartTable(title);
+
 
         // Display the pdf in a new window
         const blob = new Blob([pdfBytes], { type: 'application/pdf'});
