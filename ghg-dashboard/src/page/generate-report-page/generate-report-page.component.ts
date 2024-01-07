@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { subscribeOn } from 'rxjs';
 import { EmissionDataService } from 'src/services/emission-data.service';
 import { PdfGeneratorService } from 'src/services/pdf-generator.service';
 import { ReportDataSharingService } from 'src/services/report-data-sharing.service';
@@ -27,26 +26,39 @@ export class GenerateReportPageComponent {
     private pdfGeneratorService: PdfGeneratorService,
     private router: Router,
     private reportDataSharingService: ReportDataSharingService){
-    this.reportForm = this.formBuilder.group({
-      name: [],
-      minDate: [],
-      maxDate: [],
-      scopes: this.formBuilder.group({
-        scope1: [''],
-        scope2: [''],
-        scope3: [''],
-        newscope: [''],
-        scope5: ['']
-      }),
-      emissionDataType: this.formBuilder.group({
-        fuelCombustion: [''],
-        otherEmissions: [''],
-        elecConsumption: [''],
-        waterUsage: [''],
-        waterManagement: ['']
-      })
-    });
+
+      this.reportForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        minDate: ['', Validators.required],
+        maxDate: ['', Validators.required],
+        scopes: this.formBuilder.group({
+          scope1: [''],
+          scope2: [''],
+          scope3: [''],
+          newscope: [''],
+          scope5: ['']
+        }, { validator: this.atLeastOneScopeCheckedValidator }),
+        emissionDataType: this.formBuilder.group({
+          fuelCombustion: [''],
+          otherEmissions: [''],
+          elecConsumption: [''],
+          waterUsage: [''],
+          waterManagement: ['']
+        })
+      });
+      
   }
+
+// Custom validator function
+atLeastOneScopeCheckedValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const scopesGroup = control as FormGroup;
+  const scopeControls = Object.values(scopesGroup.controls);
+
+  const isAtLeastOneScopeChecked = scopeControls.some((scopeControl) => scopeControl.value === true);
+
+  return isAtLeastOneScopeChecked ? null : { atLeastOneScopeChecked: true };
+};
+
 
   ngOnInit(): void {
     var data, dataList;
@@ -83,10 +95,6 @@ export class GenerateReportPageComponent {
   }
 
   submitReportForm(item: any){
-
-    // Keep Report Nama in a shared private variable
-    // this.reportDataSharingService.setReportData(item.name);
-    // console.log('reportName', this.reportDataSharingService.getReportData());
 
     // Send Data to function that generates a report
     this.emissionDataService.submitReportData(item).subscribe(

@@ -7,13 +7,22 @@
                 <div class="irp-form-item">
                     <label for="" class="form-label">Name of the Report</label>
                     <input type="text" formControlName="name">
+                    <div class="form-error" *ngIf="this.reportForm.get('name')?.hasError('required')">You must give this Report a name.</div>
                 </div>
-                <div class="irp-form-item">
+                <div class="irp-form-item" style="margin-bottom: 0;">
                 <div  class="form-label" style="margin-bottom: 10px;">Choose Time Period</div>
+                <div class="datepicker" style="margin-bottom: 10px;">
                     <label for="" class="time-label">From</label>           
                     <input type="date" formControlName="minDate">
+                    <div class="form-error" *ngIf="this.reportForm.get('minDate')?.hasError('required')">Select the starting date.</div>
+                </div>
+                   
+                <div class="datepicker">
                     <label for="">To</label>           
                     <input type="date" formControlName="maxDate">
+                    <div class="form-error" *ngIf="this.reportForm.get('maxDate')?.hasError('required')">Select the end date.</div>
+                </div>
+
                 </div>
                 <div class="irp-form-item">
                     <div class="form-label">Choose Scope To Be Included</div>
@@ -22,6 +31,9 @@
                         <div *ngFor = "let data of scopeList; let i = index">
                             <input style="width: initial;" class="form-checkbox" type="checkbox" value="{{data.name}}" formControlName="{{data.formcontrol}}">
                             <label for="">{{data.name}}</label>
+                        </div>
+                        <div class="form-error" *ngIf="reportForm.get('scopes')?.hasError('atLeastOneScopeChecked')">
+                            At least one scope must be checked.
                         </div>
                     </ng-container>
 
