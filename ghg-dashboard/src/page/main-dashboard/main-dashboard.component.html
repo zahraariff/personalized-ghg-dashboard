@@ -1,67 +1,79 @@
 <div class="wrapper">
     <app-sidebar></app-sidebar>
-    <!-- <div class="container">
-        <div class="main-dashboard">
-            <div class="card">
-                <div class="graph">
-                    <img src="../assets/icons/test-graph.png" alt="">
-                </div>
-                <div class="text">
-                    <div class="header">Daily Emission</div>
-                    <div class="data">5% decrease in today's emissions</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="graph">
-                    <img src="../assets/icons/test-barchart.png" alt="">
-                </div>
-                <div class="text">
-                    <div class="header">Gas Emission Breakdown</div>
-                    <div class="data">Most emitted greenhouse gas: C02</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="graph">
-                    <img src="../assets/icons/test-linechart.png" alt="">
-                </div>
-                <div class="text">
-                    <div class="header">Gas Emission Across Faculty</div>
-                    <div class="data"></div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+
     <div>
-        <button (click)="addGraphModal.showModal()">Add Graph</button>
+        <div (click)="this.showForm=true">
+            <button (click)="addGraphModal.showModal()" class="graphpage-button">Add Graph</button>
+        </div>
         <div class="dashboard-iframe">
-            
+            <div class="div-iframe" style="position: relative;" id="this-iframe" *ngIf="isGraph1Visible">   
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph2Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534a826-765d-4c1f-8cd6-a8b6939efa38&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph3Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534ce24-c4df-4138-86fe-3f3dcef35f7a&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph4Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534cf06-e091-410e-85c2-9f6159a68825&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph5Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph6Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;" *ngIf="isGraph7Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div>
+            <div class="div-iframe" style="position: relative;"  *ngIf="isGraph8Visible">        
+                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            </div> 
         </div>
     </div>
 
     <dialog #addGraphModal>
-        <img (click)="addGraphModal.close()" src="../assets/icons/close.png" alt="" class="modal-close">
+         <img (click)="addGraphModal.close()" src="../assets/icons/close.png" alt="" class="modal-close"> 
         <div class="addgraph-container">
             <h1 class="agc-header">Choose the graphs that you'd like to highlight:</h1>
-            <form class="agc-form">
+            <form class="agc-form" [formGroup]="graphSelectionForm" *ngIf="showForm">
                 <div>
-                    <input type="checkbox" name="iframe1" value="iframe1">
+                    <input type="checkbox" formControlName="graph1">
                     <label for="">Percentage of Greenhouse Gas Emissions by Scope</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="iframe2" value="iframe2">
+                    <input type="checkbox" formControlName="graph2">
                     <label for="">Monthly Sum of Greenhouse Gas Emission Sorted By Source</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="iframe3" value="iframe3">
+                    <input type="checkbox" formControlName="graph2">
+                    <label for="">Monthly Sum of Greenhouse Gas Emission Sorted By Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" formControlName="graph3">
                     <label for="">Sum of Greenhouse Gas Emissions Tracked in CO2</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="iframe4" value="iframe4">
-                    <div class="agc-button">
+                    <input type="checkbox" formControlName="graph4">
+                    <label for="">Scope 1: Fuel Combustion</label>
                 </div>
-                    <button>Save</button>
+                <div>
+                    <input type="checkbox" formControlName="graph5">
+                    <label for="">Scope 1: Other Emissions</label>
                 </div>
-            </form>
-        </div>
-    </dialog>  
+                <div>
+                    <input type="checkbox" formControlName="graph6">
+                    <label for="">Scope 2: Electricity Consumption</label>
+                </div>
+                <div>
+                    <input type="checkbox" formControlName="graph7">
+                    <label for="">Scope 3: Water Usage</label>
+                </div>
+                 <div>
+                    <button (click)="saveGraphSelections(graphSelectionForm.value)">Save</button>
+                </div> 
+            </form> 
+        </div> 
+    </dialog>    
 </div>

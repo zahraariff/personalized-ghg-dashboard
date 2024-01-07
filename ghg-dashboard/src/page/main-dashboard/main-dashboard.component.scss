@@ -49,6 +49,17 @@
     padding-left: 26px;
 }
 
+.graphpage-button {
+    border-radius: 5px;
+    background: #01A437;
+    padding: 8px;
+    font-size: 20px;
+    border: none;
+    font-family: Readex Pro;
+    color: white;
+    text-decoration: none;
+}
+
 ::ng-deep {
 
     dialog {
