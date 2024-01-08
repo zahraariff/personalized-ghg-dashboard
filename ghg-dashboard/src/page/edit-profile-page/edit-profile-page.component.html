@@ -5,21 +5,21 @@
         <form class="irp-form" [formGroup]="editUserProfileForm" (ngSubmit)="submitUserData(editUserProfileForm.value)">
             <div class="irp-form-item">
                 <label for="username">Email</label>
-                <input class="irp-form-input short--" type="text" formControlName="email" id="email" placeholder="zaraa@um.edu.my">
+                <input class="irp-form-input short--" type="text" formControlName="email" id="email" placeholder="{{userProfileData.email}}">
                 <!-- Get email from BE -->
             </div>
             <div class="irp-form-item">
                 <label for="username">Username</label>
-                <input class="irp-form-input short--" type="text" formControlName="username" id="username" placeholder="zaraa">
+                <input class="irp-form-input short--" type="text" formControlName="username" id="username" placeholder="{{userProfileData.username}}">
                 <!-- Get username from BE -->
             </div>
             <div class="irp-form-item">
                 <label for="password">Password</label>
-                <input class="irp-form-input" type="password" formControlName="password" id="password" placeholder="password">
+                <input class="irp-form-input" type="password" formControlName="password" id="password" placeholder="******">
             </div>
             <div class="irp-form-item">
                 <label for="username">Organisation name</label>
-                <input class="irp-form-input short--" type="text" formControlName="orgName" id="orgName" placeholder="University of Malaya" readonly>
+                <input class="irp-form-input short--" type="text" id="orgName" placeholder="University of Malaya" readonly>
             </div>
             <div class="rp-button">
                 <button type="submit" class="save-button">Save Edits</button>

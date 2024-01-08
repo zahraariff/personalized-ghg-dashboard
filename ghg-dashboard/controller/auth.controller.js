@@ -1,7 +1,6 @@
 const config = require("../config/auth.config");
 const db = require("../model");
 const User = db.user;
-// const Role = db.role; unused 
 const cookieParser = require("cookie-parser");
 const express = require('express');
 const app = express();
@@ -42,7 +41,6 @@ exports.register = (req,res) => {
 }
 
 exports.login = async (req, res) => {
-    console.log(req.body);
 
     const { username, email, password } = req.body;
 
@@ -65,7 +63,7 @@ exports.login = async (req, res) => {
 
         // Generate a JWT
         const token = jwt.sign({ userId: user._id }, 'secret-key');
-        console.log(token);
+        // console.log(token);
         res.token = token;
 
         // Return the token to the client

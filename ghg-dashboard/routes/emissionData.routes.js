@@ -467,8 +467,15 @@ emissionDataRoute.patch("/edit-user/:id", async (req, res) => {
             return res.status(404).json({ message: 'User not found' })
         }
 
+        // Omit the null values
+        for (const key in updateFields) {
+            if (updateFields[key] !== null && updateFields[key] !== undefined) {
+                data[key] = updateFields[key];
+            }
+        }
+
         // Update te fields provided in the request body
-        Object.assign(data, updateFields);
+        // Object.assign(data, updateFields);
 
         // Save the updated document
         await data.save();
@@ -498,6 +505,21 @@ emissionDataRoute.delete("/delete-user/:id", async (req, res) => {
     }
 })
 
+// [Edit Profile]
+emissionDataRoute.get("/get-user-profile/:userId", (req, res) => {
+    try {
+        const userId = req.params.userId;
+        userModel.findById(userId).then((data) => {
+            if (data) {
+                res.send(data);
+            } else {
+                res.status(404).send("User not found");
+            }
+        })
+    } catch (error) {
+        res.send(data);
+    }
+});
 
 
 module.exports = emissionDataRoute;

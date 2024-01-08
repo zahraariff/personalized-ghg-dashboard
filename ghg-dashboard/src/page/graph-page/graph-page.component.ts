@@ -51,36 +51,6 @@ export class GraphPageComponent {
     this.filterbarComponent = new FilterbarComponent();
   }
 
-  // ngOnInit(): void {
-  //   this.renderChart();   
-  //   this.renderDashboard();
-  //  }
-
-
-//  renderChart(){
-//   const chartElement = document.getElementById("chart");
-//   console.log("chartElement:", chartElement);
-
-//   if (chartElement) {
-//     this.chart.render(chartElement);
-//   } else {
-//     console.error("Chart element not found");
-//   }
-
-//  }
-
-//  renderDashboard(){
-//   const dashboardElement = document.getElementById("dashboard");
-//   // console.log("chartElement:", chartElement);
-
-//   if (dashboardElement) {
-//     this.dashboard.render(dashboardElement);
-//   } else {
-//     console.error("Chart element not found");
-//   }
-
-//  }
-
  isFilterBarSelected: boolean = false;
 
  toggleFilterBar(){
@@ -113,23 +83,6 @@ shouldDisplayGraph(scope: number, emissionType: string): boolean {
   const typeMatches = this.selectedEmissionTypes.length === 0 || this.selectedEmissionTypes.includes(emissionType);
 
   return scopeMatches && typeMatches;
-}
-
-async generateReport(){
-  // Generate Pdf that contains all the scope specified
-  
-  // const pdfBytes = await this.pdfGeneratorService.generatePdfWithIframe();
-  const pdfBytes = await this.pdfGeneratorService.generatePdfWithChart('title');
-
-
-  // Create a Blob from the PDF data
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-
-  // Create a download link and trigger a click to download the PDF
-  const link = document.createElement('a');
-  link.href = window.URL.createObjectURL(blob);
-  link.download = 'generated-pdf.pdf';
-  link.click();
 }
  
 }

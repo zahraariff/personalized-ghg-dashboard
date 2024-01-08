@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const baseUrl = 'http://localhost:3000/api/auth/login'
 const logoutUrl = 'http://localhost:3000/api/auth/logout'
+const userProfileUrl = 'http://localhost:3000/get-user-profile'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,6 +15,7 @@ const httpOptions = {
 })
 export class AuthService {
   private isAuthenticated = false;
+  private userId: any;
 
   constructor(private http: HttpClient) { }
 
@@ -47,4 +49,28 @@ export class AuthService {
     
   }
 
+  getUserId() {
+    this.userId = localStorage.getItem('user_id');
+  }
+
+  getUserProfile() {
+
+    // Call method to set the private variable user id
+    this.getUserId();
+
+    if (this.userId) {
+      // Append the user ID to the URL
+      const urlWithUserId = `${userProfileUrl}/${this.userId}`;
+      console.log(urlWithUserId);
+
+      // Make the GET request with the updated URL
+      return this.http.get(urlWithUserId);
+    } else {
+      // Handle the case where the user ID is not available
+      throw new Error('User ID not found in localStorage');
+    }
+  }
+
 }
+
+

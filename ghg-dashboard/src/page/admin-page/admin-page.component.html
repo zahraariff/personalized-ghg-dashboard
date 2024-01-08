@@ -19,9 +19,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- <div class="admin-button">
-                <a style="cursor: pointer" (click)="addActivityDataTypeModal.showModal()">Add New Activity Data Type</a>
-            </div> -->
+
             <table class="admin-table width--" style="position: relative">
                 <div class="admin-button">
                     <a style="cursor: pointer" (click)="addActivityDataTypeModal.showModal()">Add New Activity Data Type</a>
@@ -93,7 +91,6 @@
                 </div>
                 <div class="irp-form-item">
                     <label for="emissionScope">Insert Scope of The New Activity Data Type</label>
-                    <!-- <input class="irp-form-input" type="text" formControlName="scope" id="emissionScope"> -->
                     <select class="em-select" name="scope" id="" formControlName="scope">
                         <ng-container *ngFor = "let data of scopeData">
                             <option value={{data.name}}>{{data.name}}</option>
@@ -121,7 +118,6 @@
                 </div>
                 <div class="irp-form-item">
                     <label for="emissionScope">Insert Scope of The New Activity Data Description</label>
-                    <!-- <input class="irp-form-input" type="text" formControlName="type" id="emissionScope"> -->
                     <select class="em-select" name="scope" id="" formControlName="scope">
                         <ng-container *ngFor = "let data of scopeData">
                             <option value={{data.name}}>{{data.name}}</option>
@@ -130,7 +126,6 @@
                 </div>
                 <div class="irp-form-item">
                     <label for="emissionScope">Insert Activity Data Type of The New Activity Data Description</label>
-                    <!-- <input class="irp-form-input" type="text" formControlName="scope" id="emissionScope"> -->
                     <select class="em-select" name="scope" id="" formControlName="type">
                         <ng-container *ngFor = "let data of dataTypes">
                             <option value={{data.name}}>{{data.name}}</option>

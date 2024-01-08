@@ -115,36 +115,4 @@ atLeastOneScopeCheckedValidator: ValidatorFn = (control: AbstractControl): Valid
 
   }
 
-  // async generateReport(){
-  //   // Generate Pdf that contains all the scope specified
-    
-  //   const pdfBytes = await this.pdfGeneratorService.generatePdfWithIframe();
-
-  //   // Create a Blob from the PDF data
-  //   const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-
-  //   // Create a download link and trigger a click to download the PDF
-  //   const link = document.createElement('a');
-  //   link.href = window.URL.createObjectURL(blob);
-  //   link.download = 'generated-pdf.pdf';
-  //   link.click();
-  // }
-
-  async generateReport(form: FormGroup){
-    const title = form.get('name')!.value;
-    console.log(title);
-    if(title){
-      try {
-        const pdfBytes = await this.pdfGeneratorService.generatePdf(title);
-        // For demonstration, let's display the PDF in a new window
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-      window.open(url, '_blank');
-      } catch (error) {
-        console.error('Error generating PDF:', error);
-      }
-    }
-  }
-
-
 }

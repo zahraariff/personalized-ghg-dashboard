@@ -18,8 +18,8 @@ export class UserService {
     return this.httpClient.get(url);
   }
 
-  editUserDetails(data: any, item: any): Observable<any> {
-    const editUrl = editUrlTemplate.replace(':id', item);
+  editUserDetails(data: any, id: any): Observable<any> {
+    const editUrl = editUrlTemplate.replace(':id', id);
     return this.httpClient.patch(editUrl, data);
   }
 

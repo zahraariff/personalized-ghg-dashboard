@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'; // OnInit is an interface that defines 'ngOnInit' lifecycle hook method.
-import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { ApiService } from './api.service';
 export class AppComponent implements OnInit {
   title = 'ghg-dashboard';
   message: any;
-  constructor(private apiService: ApiService) {};
+  constructor() {};
   ngOnInit() {
     
   }
