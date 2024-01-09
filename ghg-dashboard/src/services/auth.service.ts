@@ -51,6 +51,7 @@ export class AuthService {
 
   getUserId() {
     this.userId = localStorage.getItem('user_id');
+    return this.userId;
   }
 
   getUserProfile() {

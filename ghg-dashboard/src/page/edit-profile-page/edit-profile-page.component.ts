@@ -41,6 +41,7 @@ export class EditProfilePageComponent {
 
     // Get the id in localStorage
     var id = this.authService.getUserId();
+    console.log(id);
     this.userService.editUserDetails(item, id)
     .subscribe(response => {
       console.log('User details updated successfully', response);
