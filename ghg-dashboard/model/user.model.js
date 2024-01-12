@@ -10,7 +10,8 @@ const User = mongoose.model(
         roles: {
             type: String,
             default: roles.user
-        }
+        },
+        resetToken: String
     })
 );
 

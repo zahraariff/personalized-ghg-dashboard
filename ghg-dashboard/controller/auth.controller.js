@@ -1,5 +1,7 @@
 const config = require("../config/auth.config");
 const db = require("../model");
+const passwordResetToken = require('../model/resettoken.model'); 
+const crypto = require('crypto');
 const User = db.user;
 const cookieParser = require("cookie-parser");
 const express = require('express');

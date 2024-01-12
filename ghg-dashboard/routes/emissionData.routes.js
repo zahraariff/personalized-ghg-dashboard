@@ -8,6 +8,8 @@ let scopeModel = require('../model/scope.model');
 let dataTypeModel = require('../model/dataType.model');
 let dataDescModel = require('../model/dataDesc.model');
 let userModel = require('../model/user.model');
+const bcrypt = require("bcryptjs");
+
 
 // Add New Emission Data
 emissionDataRoute.post("/addEmissionData", async (req,res) => {
@@ -520,6 +522,34 @@ emissionDataRoute.get("/get-user-profile/:userId", (req, res) => {
         res.send(data);
     }
 });
+
+// Change Password
+emissionDataRoute.patch("/change-password/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const newPassword = req.body.password;
+
+        // Find document by ID
+        const user = await userModel.findById(userId);
+
+        if(!user) {
+            return res.status(404).json({ message: 'User not found '})
+        }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hashSync(newPassword, 8);
+
+        // Update the user's password in the document
+        user.password = hashedPassword;
+        await user.save();
+
+        return res.status(200).json({ message: 'Password updated successfully' });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+})
 
 
 module.exports = emissionDataRoute;
