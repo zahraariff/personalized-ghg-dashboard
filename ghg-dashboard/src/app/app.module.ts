@@ -24,6 +24,7 @@ import { FilterbarComponent } from 'src/components/filterbar/filterbar.component
 import { GenerateReportPageComponent } from 'src/page/generate-report-page/generate-report-page.component';
 import { ReportPageComponent } from 'src/page/report-page/report-page.component';
 import { ManageAccountsPageComponent } from 'src/page/manage-accounts-page/manage-accounts-page.component';
+import { DashboardComponent } from 'src/page/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ManageAccountsPageComponent } from 'src/page/manage-accounts-page/manag
     FilterbarComponent,
     GenerateReportPageComponent,
     ReportPageComponent,
-    ManageAccountsPageComponent
+    ManageAccountsPageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

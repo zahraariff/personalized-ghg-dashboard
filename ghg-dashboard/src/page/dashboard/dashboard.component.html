@@ -1,0 +1,57 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <button class="add-button" (click)="addGraph.showModal()">Edit Your Graph Highlights</button>
+    <div class="maindiv" #mainDiv>
+        <div class="main">
+            <div class="div-iframe" *ngFor="let graph of filterGraphsBasedOnSelection()">
+                <iframe style="border: none; border-radius: 2px;" [src]="sanitizeUrl(graph.src)" ></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dialog #addGraph>
+    <div>
+        <img (click)="addGraph.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
+        <form [formGroup]="selectionForm" (ngSubmit)="saveGraphSelections(selectionForm.value)">
+            <h3>Select graph(s) that you want to show:</h3>
+                
+              <div class="dialog-input">
+                <div>
+                    <input type="checkbox" id="0" name="0" value="0" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 0)">
+                    <label for="0">Percentage of Greenhouse Gas Emissions by Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="1" name="1" value="1" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 1)">
+                    <label for="1">Monthly Sum of Greenhouse Gas Emissions sorted by Source</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="2" name="2" value="2" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 2)">
+                    <label for="2">Monthly Sum of Greenhouse Gas Emissions sorted by Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="3" name="3" value="3" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 3)">
+                    <label for="3">Sum of Greenhouse Gas Emissions Tracked in Carbon Dioxide</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="4" name="4" value="4" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 4)">
+                    <label for="4">Scope 1: Fuel Combustion</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="5" name="5" value="5" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 5)">
+                    <label for="5">Scope 1: Other Emissions</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="6" name="6" value="6" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 6)">
+                    <label for="6">Scope 2: Electricity consumption</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="7" name="7" value="7" formArrayName="selectedGraphs" (change)="onCheckboxChange($event, 7)">
+                    <label for="6">Scope 3: Water Usage</label>
+                </div>
+                <button class="save-button">Save Selection</button>
+              </div>
+
+        </form>
+    </div> 
+</dialog>

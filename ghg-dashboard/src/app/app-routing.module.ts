@@ -16,6 +16,7 @@ import { AdminPageComponent } from 'src/page/admin-page/admin-page.component';
 import { GenerateReportPageComponent } from 'src/page/generate-report-page/generate-report-page.component';
 import { ReportPageComponent } from 'src/page/report-page/report-page.component';
 import { ManageAccountsPageComponent } from 'src/page/manage-accounts-page/manage-accounts-page.component';
+import { DashboardComponent } from 'src/page/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'register-iot-sensor', component: IotRegistrationPageComponent},
@@ -25,10 +26,10 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'login-success', component: SuccessLoginComponent, canActivate: [authGuard]},
   {path: 'home', component: LandingPageComponent},
-  {path: 'dashboard', component: MainDashboardComponent, canActivate: [authGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'iot-sensor', component: IotSensorPageComponent, canActivate: [authGuard]},
   {path: 'emissions', component: EmissionInputPageComponent, canActivate: [authGuard]},
-  {path: 'edit-profile', component: EditProfilePageComponent, canActivate: [authGuard]},
+  {path: 'edit-user-profile', component: EditProfilePageComponent, canActivate: [authGuard]},
   {path: 'graphs', component: GraphPageComponent, canActivate: [authGuard]},
   {path: 'admin', component: AdminPageComponent, canActivate: [authGuard]},
   {path: 'generate-graph', component: AdminPageComponent, canActivate: [authGuard]},

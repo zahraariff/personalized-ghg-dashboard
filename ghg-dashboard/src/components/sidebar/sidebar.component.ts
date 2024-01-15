@@ -13,8 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/emissions', title: 'Emission Data' },
     { path: '/graphs', title: 'Graph' },
     { path: '/generate-report', title: 'Report' },
-    { path: '/edit-profile', title: 'User Profile' },
-
+    { path: '/edit-user-profile', title: 'User Profile' },
 ];
 
 
