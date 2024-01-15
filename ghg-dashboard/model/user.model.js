@@ -11,7 +11,10 @@ const User = mongoose.model(
             type: String,
             default: roles.user
         },
-        resetToken: String
+        selectedGraphs: {
+            type: [String],
+            default: []
+        }
     })
 );
 
