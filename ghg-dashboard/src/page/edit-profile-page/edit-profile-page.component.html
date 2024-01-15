@@ -14,10 +14,6 @@
                 <!-- Get username from BE -->
             </div>
             <div class="irp-form-item">
-                <label for="password">Password</label>
-                <input class="irp-form-input" type="password" formControlName="password" id="password" placeholder="******">
-            </div>
-            <div class="irp-form-item">
                 <label for="username">Organisation name</label>
                 <input class="irp-form-input short--" type="text" id="orgName" placeholder="University of Malaya" readonly>
             </div>
@@ -25,6 +21,20 @@
                 <button type="submit" class="save-button">Save Edits</button>
             </div>
             <!-- To add First name and last name for user details -->
+        </form>
+        <form class="irp-form"  [formGroup]="changePwForm" (ngSubmit)="submitPassword(changePwForm.value)">
+            <div class="irp-form-item">
+                <label>Reset Password</label>
+                <span>Type your new password</span>
+               <input class="irp-form-input password--" type="password" formControlName="password" id="password">
+               <span>Retype your new password</span>
+               <input class="irp-form-input password--" type="password" formControlName="retypePassword" id="password"> 
+           </div>
+
+            <div class="rp-button">
+                <button type="submit" class="save-button">Change Password</button>
+            </div>
+
         </form>
 
     </div>

@@ -1,79 +1,56 @@
 <div class="wrapper">
     <app-sidebar></app-sidebar>
-
-    <div>
-        <div (click)="this.showForm=true">
-            <button (click)="addGraphModal.showModal()" class="graphpage-button">Add Graph</button>
-        </div>
-        <div class="dashboard-iframe">
-            <div class="div-iframe" style="position: relative;" id="this-iframe" *ngIf="isGraph1Visible">   
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
+    <button class="add-button" (click)="addGraph.showModal()">Edit Your Graph Highlights</button>
+    <div class="maindiv" #mainDiv>
+        <div class="main">
+            <!-- <p class="mainarrow" (click)="scrollRight()"><i class="arrow right"></i></p> -->
+            <div class="div-iframe" *ngFor="let graph of filterGraphsBasedOnSelection()">
+                <iframe style="border: none; border-radius: 2px;" [src]="sanitizeUrl(graph.src)" ></iframe>
             </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph2Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534a826-765d-4c1f-8cd6-a8b6939efa38&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph3Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534ce24-c4df-4138-86fe-3f3dcef35f7a&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph4Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534cf06-e091-410e-85c2-9f6159a68825&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph5Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph6Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;" *ngIf="isGraph7Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div>
-            <div class="div-iframe" style="position: relative;"  *ngIf="isGraph8Visible">        
-                <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            </div> 
         </div>
     </div>
-
-    <dialog #addGraphModal>
-         <img (click)="addGraphModal.close()" src="../assets/icons/close.png" alt="" class="modal-close"> 
-        <div class="addgraph-container">
-            <h1 class="agc-header">Choose the graphs that you'd like to highlight:</h1>
-            <form class="agc-form" [formGroup]="graphSelectionForm" *ngIf="showForm">
-                <div>
-                    <input type="checkbox" formControlName="graph1">
-                    <label for="">Percentage of Greenhouse Gas Emissions by Scope</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph2">
-                    <label for="">Monthly Sum of Greenhouse Gas Emission Sorted By Source</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph2">
-                    <label for="">Monthly Sum of Greenhouse Gas Emission Sorted By Scope</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph3">
-                    <label for="">Sum of Greenhouse Gas Emissions Tracked in CO2</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph4">
-                    <label for="">Scope 1: Fuel Combustion</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph5">
-                    <label for="">Scope 1: Other Emissions</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph6">
-                    <label for="">Scope 2: Electricity Consumption</label>
-                </div>
-                <div>
-                    <input type="checkbox" formControlName="graph7">
-                    <label for="">Scope 3: Water Usage</label>
-                </div>
-                 <div>
-                    <button (click)="saveGraphSelections(graphSelectionForm.value)">Save</button>
-                </div> 
-            </form> 
-        </div> 
-    </dialog>    
 </div>
+
+<dialog #addGraph>
+    <div>
+        <img (click)="addGraph.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
+        <form >
+            <h3>Select a graph you want to show:</h3>
+              <div class="dialog-input">
+                <div>
+                    <input type="checkbox" id="0" name="0" value="0">
+                    <label for="0">Percentage of Greenhouse Gas Emissions by Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="1" name="1" value="1">
+                    <label for="1">Monthly Sum of Greenhouse Gas Emissions sorted by Source</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="2" name="2" value="2">
+                    <label for="2">Monthly Sum of Greenhouse Gas Emissions sorted by Scope</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="3" name="3" value="3">
+                    <label for="3">Sum of Greenhouse Gas Emissions Tracked in Carbon Dioxide</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="4" name="4" value="4">
+                    <label for="4">Scope 1: Fuel Combustion</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="5" name="5" value="5">
+                    <label for="5">Scope 1: Other Emissions</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="6" name="6" value="6">
+                    <label for="6">Scope 2: Electricity consumption</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="7" name="7" value="7">
+                    <label for="6">Scope 3: Water Usage</label>
+                </div>
+                <button class="save-button">Save Selection</button>
+              </div>
+        </form>
+    </div> 
+</dialog>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth.service';
-import { LoginService } from 'src/services/login.service';
 import { UserService } from 'src/services/user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -11,15 +12,23 @@ import { UserService } from 'src/services/user.service';
 })
 export class EditProfilePageComponent {
   editUserProfileForm: FormGroup;
+  changePwForm: FormGroup;
   userProfileData: any = [];
+  password: any;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService ){
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService, 
+    private router: Router ){
     this.editUserProfileForm = this.formBuilder.group({
       username: [this.userProfileData.username],
       email: [this.userProfileData.email],
-      password: [''],
+      // password: [''],
       // orgName: ['']
     });
+
+    this.changePwForm = this.formBuilder.group({
+      password: [],
+      retypePassword: []
+    })
   }
 
   ngOnInit(): void {
@@ -48,7 +57,41 @@ export class EditProfilePageComponent {
     }, error => {
       console.error('Error updating user details', error);
     });; 
-    // window.location.reload();
+    window.location.reload();
+  }
+
+  promptConfirmation() {
+    if(confirm("Do you want to reset your password?")) {
+      // 
+      this.router.navigate(['/edit-profile']);
+    }
+
+  }
+
+  submitPassword(item: any) {
+    console.log(item);
+    const pw = item.password;
+    const retype = item.retypePassword;
+    if(pw !== retype) {
+      window.alert("Your passwords do not match! Please try again.");
+    } else {
+      var id = this.authService.getUserId();
+      console.log(pw);
+      const passwordObject = { password: pw }; // Creating an object with the password property
+      this.userService.changeUserPw(passwordObject, id).subscribe( () => {
+        // Password changed successfully
+        // You can provide feedback to the user if needed
+        window.alert("Password changed successfully!")
+      },
+      error => {
+        // Handle error from the service call
+        console.error('Error changing password:', error);
+        window.alert('There is an error changing your password. Please try again.')
+        // You can also display an error message to the user
+        // using a notification service or other method
+      });
+    }
+
   }
 
 

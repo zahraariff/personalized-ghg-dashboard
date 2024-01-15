@@ -27,6 +27,7 @@
 .irp-form {
     padding: 30px 0px;
     padding-top: 15px;
+    padding-bottom: 0;
 }
 
 .irp-form-item {
@@ -37,12 +38,21 @@
         display: block;
         margin-bottom: 10px;
     }
+
+    & span {
+        font-size: 12px;
+        margin-bottom: 1px;
+    }
 }
 
 .irp-form-input {
     height: 30px;
     width: 97%;
     padding-left: 10px;
+
+    &.password-- {
+        margin-bottom: 13px;
+    }
 }
 
 .save-button {
