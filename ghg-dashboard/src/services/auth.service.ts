@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const baseUrl = 'http://localhost:3000/api/auth/login'
 const logoutUrl = 'http://localhost:3000/api/auth/logout'
 const userProfileUrl = 'http://localhost:3000/get-user-profile'
+const resetPwUrl = 'http://localhost:3000/reset-password'
+const newPwUrl = 'http://localhost:3000/new-password'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -62,7 +64,6 @@ export class AuthService {
     if (this.userId) {
       // Append the user ID to the URL
       const urlWithUserId = `${userProfileUrl}/${this.userId}`;
-      console.log(urlWithUserId);
 
       // Make the GET request with the updated URL
       return this.http.get(urlWithUserId);
@@ -71,6 +72,16 @@ export class AuthService {
       throw new Error('User ID not found in localStorage');
     }
   }
+
+  requestReset(body: any): Observable<any> {
+    return this.http.post(resetPwUrl, body);
+  }
+
+  newPassword(body: any): Observable<any> {
+    return this.http.post(newPwUrl, body);
+  }
+
+
 
 }
 
