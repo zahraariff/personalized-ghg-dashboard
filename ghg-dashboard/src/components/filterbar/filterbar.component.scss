@@ -112,3 +112,17 @@ a.nav-link p {
 .modal-close {
     cursor: pointer;
 }
+
+.filter-button {
+    width: 60%;
+    height: 30px;
+
+    border-radius: 10px;
+    background: #3CB043;
+    color: white;
+    border: none;
+    cursor: pointer;
+    // padding: 6px;
+    margin-top: 10px;
+}
+

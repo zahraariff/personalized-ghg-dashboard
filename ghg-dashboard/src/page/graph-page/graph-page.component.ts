@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FilterbarComponent } from 'src/components/filterbar/filterbar.component';
 import { PdfGeneratorService } from 'src/services/pdf-generator.service';
 // import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 
 @Component({
@@ -11,7 +12,11 @@ import { PdfGeneratorService } from 'src/services/pdf-generator.service';
 })
 export class GraphPageComponent {
 
-  filterbarComponent: FilterbarComponent;
+  showScope1: boolean = true;
+  showScope2: boolean = true;
+  showScope3: boolean = true;
+
+  filterForm: FormGroup;
   isChildActive: boolean = false;
   
   selectedScopes: number[] = []; // Initially no scope filter are selected
@@ -28,6 +33,8 @@ export class GraphPageComponent {
     graph7: 2,
     graph8: 3
   };
+
+  graphsToShow: string[] = ['scope1', 'scope2', 'scope3'];
 
 //   sdk = new ChartsEmbedSDK({
 //     baseUrl: "https://charts.mongodb.com/charts-project-0-mcbzq", // ~REPLACE~ with the Base URL from your Embed Chart dialog.
@@ -47,8 +54,11 @@ export class GraphPageComponent {
 //     // Additional options go here
 //  });
 
-  constructor(private pdfGeneratorService: PdfGeneratorService) {
-    this.filterbarComponent = new FilterbarComponent();
+  constructor(private pdfGeneratorService: PdfGeneratorService, private formBuilder: FormBuilder) {
+    this.filterForm = this.formBuilder.group({
+      scope: this.formBuilder.array([]),
+      // activityDataType: this.formBuilder.array([]),
+    })
   }
 
  isFilterBarSelected: boolean = false;
@@ -57,13 +67,10 @@ export class GraphPageComponent {
   this.isFilterBarSelected = !this.isFilterBarSelected;
  }
 
- toggleChildShowClass(child: FilterbarComponent) {
-  this.filterbarComponent.toggleChildClass();
- }
-
  toggleChildClass() {
   console.log('parent toggle child')
   this.isChildActive = !this.isChildActive;
+  console.log(this.isChildActive);
  }
 
  filterGraphs(selectedScopes: number[]) { // this method's argument is data emitted from the child
@@ -84,5 +91,77 @@ shouldDisplayGraph(scope: number, emissionType: string): boolean {
 
   return scopeMatches && typeMatches;
 }
+
+submitFilterForm(data: any){
+  console.log(data);
+
+  const graphs: string[] = [];
+
+  // Check if 'scope' property exists in data and is an array
+  if (data.scope && Array.isArray(data.scope)) {
+    data.scope.forEach((value: string) => {
+      if (value === '1') {
+        graphs.push('scope1');
+      }
+      if (value === '2') {
+        graphs.push('scope2');
+      }  
+      if (value === '3') {
+        graphs.push('scope3');
+      }
+    });
+  }
+
+  this.graphsToShow = graphs;
+  console.log(this.graphsToShow);
+  this.showSelectedGraphs()
+
+}
+
+showSelectedGraphs() {
+  // Assuming you have these boolean properties in your component
+  this.showScope1 = false;
+  this.showScope2 = false;
+  this.showScope3 = false;
+
+  this.graphsToShow.forEach((value: string) => {
+    switch (value) {
+      case 'scope1':
+        this.showScope1 = true;
+        break;
+      case 'scope2':
+        this.showScope2 = true;
+        break;
+      case 'scope3':
+        this.showScope3 = true;
+        break;
+      default:
+        break;
+    }
+  });
+
+}
  
+disableFilter() {
+  this.showScope1 = true;
+  this.showScope2 = true;
+  this.showScope3 = true;
+}
+
+onCheckboxChange(event: Event, index: number): void{
+  const formArray: FormArray = this.scope;
+
+  if (event.target instanceof HTMLInputElement && event.target.checked) {
+    console.log(event.target);
+    formArray.push(this.formBuilder.control(index.toString()));
+  } else {
+    const indexToRemove = formArray.controls.findIndex(x => x.value === index.toString());
+    formArray.removeAt(indexToRemove);
+  }
+}
+
+get scope(): FormArray {
+  return this.filterForm.get('scope') as FormArray;
+}
+
 }

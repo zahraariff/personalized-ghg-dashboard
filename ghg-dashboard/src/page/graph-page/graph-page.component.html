@@ -3,13 +3,25 @@
     <div class="graphpage">
         <div class="graphpage-button">
             <a style="cursor: pointer" (click)="toggleChildClass()">Filter Graphs</a> 
-            <!-- <a (click)="generateReport()">Generate Report</a>           -->
         </div>
 
-        <!-- <div id="chart" style="width: 1000px;"></div> -->
-        <!-- <div id="dashboard" style="width: 1000px; height: 2000px;"></div> -->
-
-        <!-- <iframe style="background: #F1F5F4;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);width: 100vw;height: 100vh;"  src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/dashboards?id=64f89b4f-9881-4cb2-88af-4e17941a7755&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"></iframe> --> 
+        <div class="div-iframe" style="position: relative;"  id="scope1" *ngIf="showScope1">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph5.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div>
+        <div class="div-iframe" style="position: relative;" id="scope1" *ngIf="showScope1">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph6.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div>
+        <div class="div-iframe" style="position: relative;" id="scope2" *ngIf="showScope2">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph7.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div>
+        <div class="div-iframe" style="position: relative;" id="scope3" *ngIf="showScope3">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph8.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div> 
+        
         <div class="div-iframe" style="position: relative;" id="this-iframe">   
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534732d-1331-48de-8bcb-5d83447f0831&maxDataAge=300&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph1.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
@@ -26,22 +38,18 @@
             <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6534cf06-e091-410e-85c2-9f6159a68825&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
             <button (click)="graph4.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div>
-        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes['graph5'], 'Fuel Combustion')">        
-            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65459b49-e494-482b-84e6-df084e7721b9&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            <button (click)="graph5.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
-        </div>
-        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes['graph6'], 'Other Emissions')">        
-            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545b832-fc4e-4bbf-8435-51d61fce0225&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            <button (click)="graph6.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
-        </div>
-        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes['graph7'], 'Electricity Consumption')">        
-            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545bb47-2d82-4281-8923-b59c3c8f0bdd&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            <button (click)="graph7.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
-        </div>
-        <div class="div-iframe" style="position: relative;" *ngIf="shouldDisplayGraph(graphScopes['graph8'], 'Water Usage')">        
-            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-            <button (click)="graph8.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        <div class="div-iframe" style="position: relative;">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65935886-a041-422c-8864-b10ae5f87b0b&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph9.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
         </div> 
+        <div class="div-iframe" style="position: relative;">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=9406c3c9-b858-4ad1-85ed-c02cf5e97398&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph4.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div>
+        <div class="div-iframe" style="position: relative;">        
+            <iframe style="border: none;border-radius: 2px;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6c0679be-20f4-48d6-922e-71c6b9fa174a&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+            <button (click)="graph4.showModal()" style="position: absolute; top: 0; right: 0;">Enlarge</button>
+        </div>
     </div>
 </div>
 <!-- width="640" height="480" -->
@@ -87,13 +95,57 @@
     <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=6545c291-1c1d-4385-8425-0c58858d5f8d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
 </dialog>
 
+<dialog #graph9>
+    <img (click)="graph9.close()" src="../assets/icons/black-close.png" alt="" class="modal-close">
+    <iframe class="dialog-iframe" style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); width: 95%; height: 93%;" src="https://charts.mongodb.com/charts-project-0-mcbzq/embed/charts?id=65935886-a041-422c-8864-b10ae5f87b0b&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
+</dialog>
+
 <!-- Filterbar Component -->
-<!-- <app-filterbar *ngIf="isFilterBarSelected"></app-filterbar> -->
-<app-filterbar 
-[isChildActive]="isChildActive" 
-(isChildActiveChange)="isChildActive = $event" 
-[selectedScopes]="selectedScopes"
-[selectedEmissionTypes]="selectedEmissionTypes"
-(filterScopes)="filterGraphs($event)"
-(filterEmissionTypes)="filterEmissionDataTypes($event)">
-</app-filterbar>
+
+<!-- <app-filterbar 
+  [isChildActive]="isChildActive" 
+  (isChildActiveChange)="isChildActive = $event" 
+  [selectedScopes]="selectedScopes"
+  [selectedEmissionTypes]="selectedEmissionTypes"
+  (filterScopes)="filterGraphs($event)"
+  (filterEmissionTypes)="filterEmissionDataTypes($event)">
+</app-filterbar> -->
+
+<div [ngClass]="{ 'show': isChildActive }" class="wrapper-f">
+    <div class="logo-f">
+            <div class="logo-img-f">
+                <p class="simple-text">Apply Filters</p>
+                <img (click)="toggleChildClass()" src="../assets/icons/black-close.png" alt="" class="modal-close-f">
+            </div>
+    </div>
+     <div class="sidebar-wrapper-f">
+        <p class="simple-text">Filter By: </p>
+        <div class="nav-f">
+
+            <div class="nav-item-f">
+                <a class="nav-link">
+                    <p>Scope</p>
+                </a>
+            </div>
+
+            <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm.value)">
+                <div class="filter-innerbox">
+                    <div>
+                        <input type="checkbox" id="Scope 1" (change)="onCheckboxChange($event, 1)" formArrayName="scope">
+                        <label for="Scope 1">Scope 1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Scope 2" (change)="onCheckboxChange($event, 2)" formArrayName="scope">
+                        <label for="Scope 2">Scope 2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Scope 3" (change)="onCheckboxChange($event, 3)" formArrayName="scope">
+                        <label for="Scope 3">Scope 3</label>
+                    </div>
+                </div>
+                <button class="filter-button-f">Apply Filter(s)</button>
+            </form>
+            <button class="filter-button-f" (click)="disableFilter()">Clear Filter(s)</button>
+        </div>
+    </div>
+</div>

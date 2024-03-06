@@ -5,6 +5,8 @@
             <h1>Greenhouse Gas Emissions Inventory</h1>
         </div>
         <div class="iot-button">
+            <button (click)="sortAscEmissionData()" class="sort">Sort Ascending</button>
+            <button (click)="sortDescEmissionData()" class="sort">Sort Descending</button>
             <a style="cursor: pointer" (click)="myModal.showModal()">Add New Data</a>
         </div>
         <div class="iot-c-table">  
@@ -149,7 +151,7 @@
             </div>
         </dialog>     
         <dialog #deleteModal clas="deleteDialog">
-            <div class="confirmationMsg">Are you sure you want to delete this sensor?</div>
+            <div class="confirmationMsg">Are you sure you want to delete this data?</div>
             <div class="deleteButtons">
                 <button (click)="deleteEmissionData()">Yes</button>
                 <button (click)="deleteModal.close()">No</button>

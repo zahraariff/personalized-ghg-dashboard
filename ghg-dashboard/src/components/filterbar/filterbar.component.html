@@ -22,30 +22,34 @@
                     <p>Scope</p>
                 </a>
             </div>
-            <div class="filter-innerbox">
 
-                    <div (click)="applyScopesFilter(1)">
-                        <input type="checkbox" id="Scope 1">
+            <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm.value)">
+                <div class="filter-innerbox">
+                    <div>
+                        <input type="checkbox" id="Scope 1" (change)="onCheckboxChange($event, 1)" formArrayName="scope">
                         <label for="Scope 1">Scope 1</label>
                     </div>
-                    <div (click)="applyScopesFilter(2)">
-                        <input type="checkbox" id="Scope 2">
+                    <div>
+                        <input type="checkbox" id="Scope 2" (change)="onCheckboxChange($event, 2)" formArrayName="scope">
                         <label for="Scope 2">Scope 2</label>
                     </div>
-                    <div (click)="applyScopesFilter(3)">
-                        <input type="checkbox" id="Scope 3">
+                    <div>
+                        <input type="checkbox" id="Scope 3" (change)="onCheckboxChange($event, 3)" formArrayName="scope">
                         <label for="Scope 3">Scope 3</label>
                     </div>
-            </div>
+                </div>
+                <button class="filter-button">Apply Filter(s)</button>
+            </form>
 
+        
 
-            <div class="nav-item">
+            <!-- <div class="nav-item">
                 <a class="nav-link">
                     <p>Activity Data Type</p>
                 </a>
             </div>
             <div class="filter-innerbox">
-                <form action="">
+                <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm.value)">
                     <div (click)="applyEmissionTypesFilter('Fuel Combustion')">
                         <input type="checkbox" id="Fuel Combustion">
                         <label for="Fuel Combustion">Fuel Combustion</label>
@@ -62,8 +66,9 @@
                         <input type="checkbox" id="Water Usage">
                         <label for="Water Usage">Water Usage</label>
                     </div>
+                    <button class="filter-button">Apply Filter(s)</button>
                 </form>
-            </div>
+            </div> -->
 
         </div>
     </div>

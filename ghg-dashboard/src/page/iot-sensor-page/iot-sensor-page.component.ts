@@ -88,6 +88,7 @@ export class IotSensorPageComponent implements OnInit{
     .subscribe(
       (response) => {
         console.log('Data sent successfully', response);
+
         window.alert("IoT sensor deleting successfully!");
         setTimeout(function(){ window. location. reload(); }, 3000);
 

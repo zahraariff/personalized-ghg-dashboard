@@ -14,7 +14,6 @@ const bcrypt = require("bcryptjs");
 // Add New Emission Data
 emissionDataRoute.post("/addEmissionData", async (req,res) => {
     let emissionData = new emissionDataModel(req.body);
-    console.log(req.body);
     emissionData.save()
     .then(game => {
         res.status(200).json({'emissionData': 'Emission Data Added Successfully'});
@@ -549,7 +548,8 @@ emissionDataRoute.patch("/change-password/:userId", async (req, res) => {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
-})
+});
 
+// emissionDataRoute.get
 
 module.exports = emissionDataRoute;

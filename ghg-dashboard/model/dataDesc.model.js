@@ -11,7 +11,7 @@ let dataDesc = new Schema({
         type: String
     },
     scope: {
-        scope: String
+        type: String
     }
 });
 

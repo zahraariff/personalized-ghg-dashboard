@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmissionDataService } from 'src/services/emission-data.service';
 
@@ -7,7 +7,8 @@ const baseUrl = 'http://localhost:3000/addEmissionData'
 @Component({
   selector: 'app-emission-input-page',
   templateUrl: './emission-input-page.component.html',
-  styleUrls: ['./emission-input-page.component.scss']
+  styleUrls: ['./emission-input-page.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class EmissionInputPageComponent {
 
@@ -182,4 +183,13 @@ export class EmissionInputPageComponent {
     }
   }
 
+  sortAscEmissionData() {
+    this.emissionData = this.emissionData.slice().sort((a: any, b: any) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    // console.log("Ascending Order:", ascendingOrder);
+  }
+
+  sortDescEmissionData() {
+    this.emissionData = this.emissionData.slice().sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    // console.log("Descending Order:", descendingOrder);
+  }
 }

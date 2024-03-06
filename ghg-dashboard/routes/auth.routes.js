@@ -29,7 +29,7 @@ authRoute.patch(
   iotController.updateIotSensor
 );
 
-authRoute.post(
+authRoute.delete(
   "/api/iot/delete/:id", 
   iotController.deleteIotSensor
 );

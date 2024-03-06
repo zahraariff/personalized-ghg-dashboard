@@ -112,7 +112,7 @@ img.edit {
     overflow: auto;
 }
 
-::ng-deep {
+:host ::ng-deep {
 
     dialog {
         border: none;

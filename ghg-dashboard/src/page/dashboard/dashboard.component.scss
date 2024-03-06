@@ -63,13 +63,15 @@
 .main {
     display: flex;
     flex-wrap: wrap;
-    height: 80%;
+    height: 99%;
     // min-width: 99%;
     // margin-right: 30px;
     margin-top: 10px;
     align-items: center;
     justify-content: center;
     // position: relative;
+    width: 100%;
+    overflow-y: auto;
 }
 
 .div-iframe {
@@ -126,8 +128,8 @@
     cursor: pointer;
 }
   
-
-::ng-deep {
+// 
+:host ::ng-deep {
 
     dialog {
         border: none;

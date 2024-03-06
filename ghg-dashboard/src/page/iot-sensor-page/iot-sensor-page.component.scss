@@ -78,7 +78,7 @@ img.edit {
     vertical-align: center;
 }
 
-::ng-deep {
+:host ::ng-deep {
 
     dialog {
         border: none;

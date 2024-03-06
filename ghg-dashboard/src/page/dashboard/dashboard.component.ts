@@ -1,20 +1,23 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/services/auth.service';
 import { UserProfile} from 'src/types/userProfile';
 import { GraphObject } from 'src/types/userProfile';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent {
 
   graphMap: any = [];
   @ViewChild('mainDiv') mainDiv?: ElementRef<any>;
   selectionForm: FormGroup;
+  userId: any;
 
   tempGraphArr: GraphObject = {
     "0": {
@@ -80,7 +83,7 @@ export class DashboardComponent {
     },
   ]
   
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private sanitizer: DomSanitizer){
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private sanitizer: DomSanitizer, private userService: UserService){
     this.selectionForm = this.formBuilder.group({
       selectedGraphs: this.formBuilder.array([]),
     });
@@ -92,10 +95,26 @@ export class DashboardComponent {
 
 
   saveGraphSelections(data: any) {
-    console.log(data);
+
+    const id = this.getUserId();
+    this.userService.editUserDetails(data, id). subscribe(
+      (response) => {
+        window.alert("Graph selection is edited successfully! Page will reload in 3 seconds.")
+        setTimeout(() => {
+          window.location.reload()
+        }, 3000);
+      },
+      (error) => {
+        window.alert("There was an error in updating. Please try again.")
+      }
+    );
 
   }
 
+  private getUserId() {
+    this.userId = localStorage.getItem('user_id');
+    return this.userId;
+  }
   // Method to get the user's graph selection
   getGraphSelection() {
 
@@ -149,4 +168,7 @@ export class DashboardComponent {
       formArray.removeAt(indexToRemove);
     }
   }
+
+  // edit selectedgraphs using same with get user service
+
 }

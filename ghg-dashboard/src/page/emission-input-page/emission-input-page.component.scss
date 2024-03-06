@@ -90,7 +90,7 @@ img.edit {
 }
 
 
-::ng-deep {
+:host ::ng-deep {
 
     dialog {
         border: none;
@@ -207,5 +207,31 @@ img.edit {
         padding: 5px;
     }
 
+    .confirmationMsg {
+        height: 150px;
+        padding: 50px;
+        padding-top: 70px;
+    }
+
+    .deleteButtons {
+        text-align: center;
+        padding: 20px;
+        padding-top: 0; 
+    }
+
 }
+
+.sort {
+    margin-right: 5px;
+    border-radius: 5px;
+    background: rgb(3, 125, 74);
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    font-family: Readex Pro;
+    color: white;
+    text-decoration: none;
+}
+
+
 

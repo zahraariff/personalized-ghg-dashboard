@@ -83,6 +83,7 @@ export class AdminPageComponent {
   }
 
   addActivityDataDescFormSubmit(data:any){
+    console.log(data);
     this.emissionDataService.addNewDataDesc(data)
     .subscribe(
       (response) => {
@@ -107,7 +108,9 @@ export class AdminPageComponent {
     .subscribe(
       (response) => {
         console.log('Data sent successfully', response);
-        window.alert("data deleted successfully!");
+        // window.alert("data deleted successfully!");
+        window.alert("Error in deleting");
+
         setTimeout(function(){ window. location. reload(); }, 3000);
       },
       (error) => {
