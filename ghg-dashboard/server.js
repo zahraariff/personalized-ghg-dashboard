@@ -4,8 +4,8 @@ require('dotenv').config();
 //Use Express
 const express = require("express");
 const mongoose = require('mongoose');
-// const mongoString = process.env.DATABASE_URL;
-const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.mongodb.net/";
+const mongoString = process.env.DATABASE_URL;
+// const mongoString = "mongodb+srv://zahraariff:nd6CyXk46GSJ6kg1@cluster0.q341x8n.mongodb.net/";
 // console.log(process.env.DATABASE_URL);
 const routes = require('./routes/routes');
 const emissionDataRoutes = require('./routes/emissionData.routes');
