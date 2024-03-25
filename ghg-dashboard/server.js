@@ -80,6 +80,8 @@ app.use('', emissionDataRoutes)
 app.use('', authRoutes)
 app.use('', cookieRoutes)
 
+module.exports = app;
+
 
 
 
