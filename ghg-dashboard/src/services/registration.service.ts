@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 // const baseUrl = 'http://localhost:3000/api/auth/registration'
 // const baseUrl = 'https://personalized-ghg-dashboard-testdeploy.vercel.app/api/auth/registration'
-const baseUrl = '/api/auth/registration';
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/auth/registration';
 
 
 @Injectable({
