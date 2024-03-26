@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const baseUrl = 'http://localhost:3000/api/iot-sensor'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/iot-sensor'
 
 @Injectable({
   providedIn: 'root'

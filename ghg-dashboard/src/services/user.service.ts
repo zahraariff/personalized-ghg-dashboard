@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const url = 'http://localhost:3000/get-all-users'
-const editUrlTemplate = 'http://localhost:3000/edit-user/:id'
-const delUrlTemplate = 'http://localhost:3000/delete-user/:id'
-const changePwUrlTemplate = 'http://localhost:3000/change-password/:id'
+const url = 'https://personalized-ghg-dashboard-be.onrender.com/get-all-users'
+const editUrlTemplate = 'https://personalized-ghg-dashboard-be.onrender.com/edit-user/:id'
+const delUrlTemplate = 'https://personalized-ghg-dashboard-be.onrender.com/delete-user/:id'
+const changePwUrlTemplate = 'https://personalized-ghg-dashboard-be.onrender.com/change-password/:id'
 
 @Injectable({
   providedIn: 'root'

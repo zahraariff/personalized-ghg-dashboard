@@ -2,22 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const addUrl = 'http://localhost:3000/addEmissionData'
-const listUrl = 'http://localhost:3000/view-emission-data'
-const editUrl = 'http://localhost:3000/edit-emission-data'
-const delUrl =  'http://localhost:3000/delete-emission-data'
-const viewScopeUrl = 'http://localhost:3000/view-data-scopes'
-const viewDataTypesUrl = 'http://localhost:3000/view-data-types'
-const viewDataDescUrl = 'http://localhost:3000/view-data-descriptions'
-const addScopeUrl = 'http://localhost:3000/add-new-scope'
-const addDataTypeUrl = 'http://localhost:3000/add-new-data-type'
-const addDataDescUrl = 'http://localhost:3000/add-new-data-desc'
-const delDataTypeUrl = 'http://localhost:3000/delete-activity-data-type'
-const delScopeUrl = 'http://localhost:3000/delete-scope'
-const delDataDescUrl = 'http://localhost:3000/delete-activity-data-desc'
+const addUrl = 'https://personalized-ghg-dashboard-be.onrender.com/addEmissionData'
+const listUrl = 'https://personalized-ghg-dashboard-be.onrender.com/view-emission-data'
+const editUrl = 'https://personalized-ghg-dashboard-be.onrender.com/edit-emission-data'
+const delUrl =  'https://personalized-ghg-dashboard-be.onrender.com/delete-emission-data'
+const viewScopeUrl = 'https://personalized-ghg-dashboard-be.onrender.com/view-data-scopes'
+const viewDataTypesUrl = 'https://personalized-ghg-dashboard-be.onrender.com/view-data-types'
+const viewDataDescUrl = 'https://personalized-ghg-dashboard-be.onrender.com/view-data-descriptions'
+const addScopeUrl = 'https://personalized-ghg-dashboard-be.onrender.com/add-new-scope'
+const addDataTypeUrl = 'https://personalized-ghg-dashboard-be.onrender.com/add-new-data-type'
+const addDataDescUrl = 'https://personalized-ghg-dashboard-be.onrender.com/add-new-data-desc'
+const delDataTypeUrl = 'https://personalized-ghg-dashboard-be.onrender.com/delete-activity-data-type'
+const delScopeUrl = 'https://personalized-ghg-dashboard-be.onrender.com/delete-scope'
+const delDataDescUrl = 'https://personalized-ghg-dashboard-be.onrender.com/delete-activity-data-desc'
 
 // [CHARTS]
-const generateReportData = 'http://localhost:3000/query-report-data'
+const generateReportData = 'https://personalized-ghg-dashboard-be.onrender.com/query-report-data'
 
 @Injectable({
   providedIn: 'root'

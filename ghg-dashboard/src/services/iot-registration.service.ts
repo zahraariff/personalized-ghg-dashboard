@@ -5,9 +5,9 @@ import { IotSensor } from 'src/app/models/iot-sensor.model';
 import { catchError } from 'rxjs/operators';
 
 
-const baseUrl = 'http://localhost:3000/api/post'
-const editUrl = 'http://localhost:3000/api/iot/edit'
-const delUrl = 'http://localhost:3000/api/iot/delete'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/post'
+const editUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/iot/edit'
+const delUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/iot/delete'
 // const editUrl = 'http://localhost:3000/api/iot/edit/64797e279a5444d2471cb94e'
 
 @Injectable({

@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmissionDataService } from 'src/services/emission-data.service';
 
-const baseUrl = 'http://localhost:3000/addEmissionData'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/addEmissionData'
 
 @Component({
   selector: 'app-emission-input-page',

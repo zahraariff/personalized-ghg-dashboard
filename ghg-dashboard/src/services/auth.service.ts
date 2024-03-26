@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:3000/api/auth/login'
-const logoutUrl = 'http://localhost:3000/api/auth/logout'
-const userProfileUrl = 'http://localhost:3000/get-user-profile'
-const resetPwUrl = 'http://localhost:3000/reset-password'
-const newPwUrl = 'http://localhost:3000/new-password'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/auth/login'
+const logoutUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/auth/logout'
+const userProfileUrl = 'https://personalized-ghg-dashboard-be.onrender.com/get-user-profile'
+const resetPwUrl = 'https://personalized-ghg-dashboard-be.onrender.com/reset-password'
+const newPwUrl = 'https://personalized-ghg-dashboard-be.onrender.com/new-password'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
