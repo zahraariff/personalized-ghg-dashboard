@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-const baseUrl = 'http://localhost:3000/api/auth/login'
-const adminUrl = 'http://localhost:3000/api/auth/admin-login'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/auth/login'
+const adminUrl = 'https://personalized-ghg-dashboard-be.onrender.com/api/auth/admin-login'
 
 @Injectable({
   providedIn: 'root'
