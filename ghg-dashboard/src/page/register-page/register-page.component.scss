@@ -18,9 +18,13 @@ background: rgba(26,188,156,0.3);
 }
 
 .rp-container{
-max-width: 440px;
-padding: 0 20px;
-margin: 170px auto;
+    max-width: 440px;
+    padding: 0 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .rp{
