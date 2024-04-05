@@ -23,16 +23,35 @@ emissionDataRoute.post("/addEmissionData", async (req,res) => {
     });
 });
 
-emissionDataRoute.get("/view-emission-data", (req, res) => {
+// Fetch Non-Paginated Emission Data
+// emissionDataRoute.get("/view-emission-data", (req, res) => {
+//     try {
+//         emissionDataModel.find().then((data) => {
+//            res.send(data);
+//         });
+//     } catch (error) {
+//         res.send(data);
+//     }
+// })
+
+// Fetch Paginated Emission Data
+const PAGE_SIZE = 7;
+emissionDataRoute.get("/view-emission-data", async (req, res) => {
     try {
-        emissionDataModel.find().then((data) => {
-           res.send(data);
-        });
-    } catch (error) {
+        let pageSize = PAGE_SIZE;
+        let currentPage = parseInt(req.query.page) || 1;
+        let skip = (currentPage - 1) * pageSize;
+
+        const data = await emissionDataModel
+                        .find()
+                        .skip(skip)
+                        .limit(pageSize);
+        
         res.send(data);
+    } catch (error) {
+        res.status(500).send("Internal server error");
     }
 })
-
 // Edit Emission Data
 emissionDataRoute.patch("/edit-emission-data/:id", async (req, res) => {
     try {
