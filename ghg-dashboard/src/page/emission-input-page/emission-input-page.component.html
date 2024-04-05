@@ -5,6 +5,9 @@
             <h1>Greenhouse Gas Emissions Inventory</h1>
         </div>
         <div class="iot-button">
+            <div class="pagination">
+                <a *ngFor="let page of getPaginationLinks()" [class.active]="page === currentPage" (click)="onPageChange(page)">{{ page }}</a>
+            </div>
             <button (click)="sortAscEmissionData()" class="sort">Sort Ascending</button>
             <button (click)="sortDescEmissionData()" class="sort">Sort Descending</button>
             <a style="cursor: pointer" (click)="myModal.showModal()">Add New Data</a>
@@ -19,7 +22,7 @@
                     <th>Activity Data Value</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of emissionData; let i = index" style="background-color: white;">
+                    <tr *ngFor="let data of getPaginatedData()" style="background-color: white;">
                         <td>{{data.createdAt}}</td>
                         <td>{{data.scope}}</td>
                         <td>{{data.dataType}}</td>

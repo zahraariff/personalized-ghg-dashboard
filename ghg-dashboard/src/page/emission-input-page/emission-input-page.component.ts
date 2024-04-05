@@ -42,6 +42,10 @@ export class EmissionInputPageComponent {
       "name": "Volume of diesel consumed by machinery/facilities"
     }
   ];
+  totalItems: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 7;
+  totalPages: number = 0;
 
 
   constructor(private formBuilder: FormBuilder, private emissionDataService: EmissionDataService){
@@ -66,8 +70,9 @@ export class EmissionInputPageComponent {
     var data, dataList;
 
     // Retrieve all Emission Data
-    data = this.emissionDataService.retrieveEmissionDataList();
-    dataList = data.subscribe(res => {this.emissionData = res});
+    this.loadEmissionData();
+    // data = this.emissionDataService.retrieveEmissionDataList();
+    // dataList = data.subscribe(res => {this.emissionData = res});
 
     // Retrieve all Scopes for Add Form
     data = this.emissionDataService.retrieveEmissionDataScope();
@@ -80,6 +85,16 @@ export class EmissionInputPageComponent {
     // Retrieve All Data Description for Add Form
     data = this.emissionDataService.retrieveEmissionDataDescription();
     dataList = data.subscribe(res => {this.dataDescList = res});
+  }
+
+  loadEmissionData(): void {
+    this.emissionDataService.retrieveEmissionDataList().subscribe(data => {
+      this.emissionData = data;
+      this.totalItems = this.emissionData.length
+      console.log(this.totalItems,'total num of items')
+      this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+      this.currentPage = 1;
+    })
   }
 
   emSubmit(item:any){
@@ -192,4 +207,19 @@ export class EmissionInputPageComponent {
     this.emissionData = this.emissionData.slice().sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     // console.log("Descending Order:", descendingOrder);
   }
+
+  getPaginatedData(): any[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, this.totalItems);
+    return this.emissionData.slice(startIndex, endIndex);
+  }
+
+  getPaginationLinks(): number[] {
+    return Array(this.totalPages).fill(0).map((x,i)=> i+1);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
 }
