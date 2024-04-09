@@ -6,7 +6,14 @@
         </div>
         <div class="iot-button">
             <div class="pagination">
-                <a *ngFor="let page of getPaginationLinks()" [class.active]="page === currentPage" (click)="onPageChange(page)">{{ page }}</a>
+                <!-- <a *ngFor="let page of getPaginationLinks()" [class.active]="page === currentPage" (click)="onPageChange(page)">{{ page }}</a> -->
+                <a class="prev" (click)="previousPage()">&laquo;</a>
+                <ng-container *ngFor="let page of visiblePages">
+                    <a *ngIf="page !== '...' && page !== currentPage" (click)="onPageChange(page)">{{ page }}</a>
+                    <!-- <span *ngIf="page === '...'">{{ page }}</span> -->
+                    <a *ngIf="page === currentPage" [class.active]="true">{{ page }}</a>
+                </ng-container>
+                <a class="next" (click)="nextPage()">&raquo;</a>
             </div>
             <button (click)="sortAscEmissionData()" class="sort">Sort Ascending</button>
             <button (click)="sortDescEmissionData()" class="sort">Sort Descending</button>

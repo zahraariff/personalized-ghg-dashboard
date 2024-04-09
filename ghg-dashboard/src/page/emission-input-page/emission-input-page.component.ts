@@ -44,8 +44,10 @@ export class EmissionInputPageComponent {
   ];
   totalItems: number = 0;
   currentPage: number = 1;
-  pageSize: number = 7;
+  pageSize: number = 10;
   totalPages: number = 0;
+  maxVisiblePages: number = 5;
+  visiblePages: (number | '...')[] = []; 
 
 
   constructor(private formBuilder: FormBuilder, private emissionDataService: EmissionDataService){
@@ -94,6 +96,7 @@ export class EmissionInputPageComponent {
       console.log(this.totalItems,'total num of items')
       this.totalPages = Math.ceil(this.totalItems / this.pageSize);
       this.currentPage = 1;
+      this.updateVisiblePaginationLinks();
     })
   }
 
@@ -220,6 +223,46 @@ export class EmissionInputPageComponent {
 
   onPageChange(page: number): void {
     this.currentPage = page;
+    this.updateVisiblePaginationLinks();
+  }
+
+  updateVisiblePaginationLinks(): void {
+    const halfMaxVisiblePages = Math.floor(this.maxVisiblePages / 2);
+    const startPage = Math.max(1, this.currentPage - halfMaxVisiblePages);
+    const endPage = Math.min(this.totalPages, startPage + this.maxVisiblePages - 1);
+
+    this.visiblePages = [];
+    if (startPage > 1) {
+      this.visiblePages.push(1);
+      if(startPage > 2) {
+        this.visiblePages.push('...');
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      this.visiblePages.push(i);
+    }
+
+    if (endPage < this.totalPages) {
+      if(endPage < this.totalPages-1) {
+        this.visiblePages.push('...');
+      }
+      this.visiblePages.push(this.totalPages);
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateVisiblePaginationLinks();
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateVisiblePaginationLinks();
+    }
   }
 
 }

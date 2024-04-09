@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IotRegistrationService } from 'src/services/iot-registration.service';
 
-const baseUrl = 'http://localhost:4200/register-iot-sensor'
+const baseUrl = 'https://personalized-ghg-dashboard-be.onrender.com/register-iot-sensor'
 
 @Component({
   selector: 'app-iot-registration-page',
