@@ -7,9 +7,13 @@
 
 Tech Stack
  Backend: Node.js with Express framework
+ 
  Frontend: Angular, CSS
+ 
  Database: MongoDB (NoSQL)
+ 
  IoT module: Raspberry Pi 4, MQTT Broker, Python
+ 
  Deployment: Vercel
  
  
